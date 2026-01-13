@@ -1,0 +1,199 @@
+<!-- ===== PRs (Open-Source Contributions) ===== -->
+<section id="pull-requests" class="section">
+  <div class="container">
+    <h2>Pull Requests</h2>
+    <p class="muted">
+      A curated list of my public pull requests across open-source security and telemetry projects.
+    </p>
+
+    <div class="grid">
+
+      <!-- Wazuh upstream PRs -->
+      <article class="card">
+        <div class="card-head">
+          <span class="badge badge-upstream">Upstream</span>
+          <span class="badge badge-review">Review Needed</span>
+          <span class="badge badge-windows">Windows</span>
+        </div>
+        <h3>
+          <a href="https://github.com/wazuh/wazuh-ruleset/pull/908" target="_blank" rel="noopener">
+            Fix broken Sysmon EventID 1 (ProcessCreate) decoders and normalize regex patterns
+          </a>
+        </h3>
+        <p class="meta">Repo: wazuh/wazuh-ruleset · PR #908</p>
+        <p class="desc">
+          Decoder reliability + normalization for Sysmon Process Create telemetry to reduce parsing issues and improve downstream detections.
+        </p>
+        <a class="link" href="https://github.com/wazuh/wazuh-ruleset/pull/908" target="_blank" rel="noopener">View PR →</a>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <span class="badge badge-upstream">Upstream</span>
+          <span class="badge badge-review">Review Needed</span>
+          <span class="badge badge-windows">Windows</span>
+        </div>
+        <h3>
+          <a href="https://github.com/wazuh/wazuh-ruleset/pull/909" target="_blank" rel="noopener">
+            Improve Sysmon rule descriptions with triage-relevant context
+          </a>
+        </h3>
+        <p class="meta">Repo: wazuh/wazuh-ruleset · PR #909</p>
+        <p class="desc">
+          Improves analyst guidance: what to validate, expected benign patterns, and triage context to reduce time-to-decision.
+        </p>
+        <a class="link" href="https://github.com/wazuh/wazuh-ruleset/pull/909" target="_blank" rel="noopener">View PR →</a>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <span class="badge badge-upstream">Upstream</span>
+          <span class="badge badge-review">Review Needed</span>
+          <span class="badge badge-windows">Windows</span>
+        </div>
+        <h3>
+          <a href="https://github.com/wazuh/wazuh-ruleset/pull/910" target="_blank" rel="noopener">
+            rules: remove duplicate Windows Defender errorCode rules
+          </a>
+        </h3>
+        <p class="meta">Repo: wazuh/wazuh-ruleset · PR #910</p>
+        <p class="desc">
+          Removes duplicated Windows Defender errorCode rules to reduce clutter and avoid inconsistent rule behavior.
+        </p>
+        <a class="link" href="https://github.com/wazuh/wazuh-ruleset/pull/910" target="_blank" rel="noopener">View PR →</a>
+      </article>
+
+      <!-- SigmaHQ -->
+      <article class="card">
+        <div class="card-head">
+          <span class="badge badge-upstream">Upstream</span>
+          <span class="badge badge-review">Review Needed</span>
+          <span class="badge badge-windows">Windows</span>
+        </div>
+        <h3>
+          <a href="https://github.com/SigmaHQ/sigma/pull/5835" target="_blank" rel="noopener">
+            Improve description and false positive guidance for Sysmon configuration change rule
+          </a>
+        </h3>
+        <p class="meta">Repo: SigmaHQ/sigma · PR #5835</p>
+        <p class="desc">
+          Enhances rule documentation with clearer intent and false-positive guidance to improve SOC triage quality.
+        </p>
+        <a class="link" href="https://github.com/SigmaHQ/sigma/pull/5835" target="_blank" rel="noopener">View PR →</a>
+      </article>
+
+      <!-- Elastic fork PR (your repo) -->
+      <article class="card">
+        <div class="card-head">
+          <span class="badge badge-fork">Fork</span>
+          <span class="badge badge-docs">Docs</span>
+        </div>
+        <h3>
+          <a href="https://github.com/gustavo89587/detection-rules/pull/1" target="_blank" rel="noopener">
+            Docs: improve WinRAR/7-Zip encrypted archive rule guidance
+          </a>
+        </h3>
+        <p class="meta">Repo: gustavo89587/detection-rules · PR #1</p>
+        <p class="desc">
+          Improves documentation and triage guidance for encrypted archive detections to reduce noise and clarify analyst actions.
+        </p>
+        <a class="link" href="https://github.com/gustavo89587/detection-rules/pull/1" target="_blank" rel="noopener">View PR →</a>
+      </article>
+
+      <!-- Your forks in wazuh-ruleset -->
+      <article class="card">
+        <div class="card-head">
+          <span class="badge badge-fork">Fork</span>
+          <span class="badge badge-windows">Windows</span>
+        </div>
+        <h3>
+          <a href="https://github.com/gustavo89587/wazuh-ruleset/pull/1" target="_blank" rel="noopener">
+            Improve Sysmon rule descriptions with triage-relevant context
+          </a>
+        </h3>
+        <p class="meta">Repo: gustavo89587/wazuh-ruleset · PR #1</p>
+        <p class="desc">
+          Working branch PR in my fork used to stage improvements before upstream submission.
+        </p>
+        <a class="link" href="https://github.com/gustavo89587/wazuh-ruleset/pull/1" target="_blank" rel="noopener">View PR →</a>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <span class="badge badge-fork">Fork</span>
+          <span class="badge badge-windows">Windows</span>
+        </div>
+        <h3>
+          <a href="https://github.com/gustavo89587/wazuh-ruleset/pull/2" target="_blank" rel="noopener">
+            rules: remove duplicate Windows Defender errorCode rules
+          </a>
+        </h3>
+        <p class="meta">Repo: gustavo89587/wazuh-ruleset · PR #2</p>
+        <p class="desc">
+          Fork PR used to stage cleanup work prior to upstream submission.
+        </p>
+        <a class="link" href="https://github.com/gustavo89587/wazuh-ruleset/pull/2" target="_blank" rel="noopener">View PR →</a>
+      </article>
+
+      <!-- Semantic conventions repo -->
+      <article class="card">
+        <div class="card-head">
+          <span class="badge badge-fork">Fork</span>
+          <span class="badge badge-genai">GenAI</span>
+        </div>
+        <h3>
+          <a href="https://github.com/gustavo89587/semantic-conventions/pull/1" target="_blank" rel="noopener">
+            gen-ai: add requester security/abuse context attributes for requests
+          </a>
+        </h3>
+        <p class="meta">Repo: gustavo89587/semantic-conventions · PR #1</p>
+        <p class="desc">
+          Adds security/abuse context attributes for request telemetry to improve traceability and analysis of requester behavior.
+        </p>
+        <a class="link" href="https://github.com/gustavo89587/semantic-conventions/pull/1" target="_blank" rel="noopener">View PR →</a>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== Minimal CSS for this section (drop into your stylesheet) ===== -->
+<style>
+  .section { padding: 48px 0; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 16px; }
+  h2 { margin: 0 0 10px; font-size: 28px; letter-spacing: -0.02em; }
+  .muted { margin: 0 0 24px; opacity: .75; line-height: 1.5; }
+
+  .grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+
+  .card {
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 14px;
+    padding: 16px;
+    background: rgba(255,255,255,.03);
+  }
+  .card-head { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+  .badge {
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,.14);
+    opacity: .9;
+  }
+  .badge-upstream { }
+  .badge-fork { }
+  .badge-review { }
+  .badge-windows { }
+  .badge-docs { }
+  .badge-genai { }
+
+  .meta { margin: 8px 0 10px; font-size: 13px; opacity: .72; }
+  .desc { margin: 0 0 12px; line-height: 1.55; opacity: .9; }
+  .link { display: inline-block; font-weight: 600; text-decoration: none; }
+  .link:hover { text-decoration: underline; }
+
+  /* Optional: make links inside titles look clean */
+  h3 { margin: 0; font-size: 16px; line-height: 1.35; }
+  h3 a { text-decoration: none; }
+  h3 a:hover { text-decoration: underline; }
+</style>
