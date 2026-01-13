@@ -1,217 +1,415 @@
-<!-- ===== PRs (Open-Source Contributions) ===== -->
-<section id="pull-requests" class="section">
-  <div class="container">
-    <h2>Pull Requests</h2>
-    <p class="muted">
-      A curated list of my public pull requests across open-source security and telemetry projects.
-    </p>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Gustavo — Open Source Detection Engineering</title>
+  <meta name="description" content="Open-source contributions in detection engineering, telemetry, and security." />
+  <meta name="color-scheme" content="dark light" />
 
-    <div class="grid">
+  <style>
+    :root{
+      --bg:#0b0f14;
+      --panel:rgba(255,255,255,.03);
+      --border:rgba(255,255,255,.12);
+      --text:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.70);
+      --link:#8ab4f8;
+      --shadow:0 12px 40px rgba(0,0,0,.35);
+      --radius:16px;
+    }
 
-      <article class="card">
-        <div class="card-head">
-          <span class="badge badge-upstream">Upstream</span>
-          <span class="badge badge-review">Review Needed</span>
-          <span class="badge badge-windows">Windows</span>
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(1200px 600px at 20% -10%, rgba(138,180,248,.15), transparent 60%),
+                  radial-gradient(900px 500px at 90% 0%, rgba(255,255,255,.08), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.55;
+    }
+
+    a{ color:var(--link); }
+    a:hover{ opacity:.9; }
+
+    .container{
+      max-width:1100px;
+      margin:0 auto;
+      padding:0 16px;
+    }
+
+    header{
+      padding:56px 0 22px;
+    }
+
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .brand{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+    }
+
+    .brand h1{
+      margin:0;
+      font-size:34px;
+      letter-spacing:-0.03em;
+      line-height:1.12;
+    }
+    .brand p{
+      margin:0;
+      color:var(--muted);
+      max-width:70ch;
+    }
+
+    .actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:var(--panel);
+      text-decoration:none;
+      color:var(--text);
+      font-weight:600;
+      box-shadow: var(--shadow);
+    }
+    .btn:hover{ transform: translateY(-1px); }
+
+    nav{
+      margin-top:18px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .pill{
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.02);
+      text-decoration:none;
+      color:var(--muted);
+      font-size:14px;
+    }
+    .pill:hover{ color:var(--text); }
+
+    main{ padding: 10px 0 70px; }
+
+    .section{ padding: 42px 0; }
+    .section h2{
+      margin:0 0 10px;
+      font-size:26px;
+      letter-spacing:-0.02em;
+    }
+    .muted{ margin:0 0 22px; color:var(--muted); }
+
+    .grid{
+      display:grid;
+      gap:16px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    .card{
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      padding:16px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(6px);
+    }
+
+    .card-head{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-bottom:10px;
+    }
+
+    .badge{
+      font-size:12px;
+      padding:4px 8px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      color: var(--muted);
+      background: rgba(255,255,255,.02);
+      white-space:nowrap;
+    }
+
+    .meta{
+      margin:8px 0 10px;
+      font-size:13px;
+      color:var(--muted);
+    }
+
+    .desc{
+      margin:0 0 12px;
+      color:rgba(255,255,255,.86);
+    }
+
+    .link{
+      display:inline-block;
+      font-weight:700;
+      text-decoration:none;
+    }
+    .link:hover{ text-decoration:underline; }
+
+    h3{
+      margin:0;
+      font-size:16px;
+      line-height:1.35;
+      letter-spacing:-0.01em;
+    }
+    h3 a{ text-decoration:none; color: var(--link); }
+    h3 a:hover{ text-decoration:underline; }
+
+    footer{
+      padding:26px 0 48px;
+      color:var(--muted);
+      border-top:1px solid var(--border);
+      background: rgba(0,0,0,.12);
+    }
+
+    /* Small screens */
+    @media (max-width:520px){
+      .brand h1{ font-size:28px; }
+      .btn{ width:100%; }
+      .actions{ width:100%; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <div class="topbar">
+        <div class="brand">
+          <h1>Gustavo — Detection Engineering</h1>
+          <p>
+            Open-source contributions focused on Windows telemetry, detection logic, parsing correctness,
+            and triage-quality guidance.
+          </p>
         </div>
-        <h3>
-          <a href="https://github.com/open-telemetry/opentelemetry-collector-contrib/pull/45390" target="_blank" rel="noopener">
-            clarify allowed_values and blocked_values precedence
-          </a>
-        </h3>
-        <p class="meta">Repo: opentelemetry-collector-contrib· PR #45390</p>
-        <p class="desc">
-           This PR documents the precedence between allowed_values and blocked_values as discussed in #43826.
-        </p>
-        <a class="link" href="https://github.com/open-telemetry/opentelemetry-collector-contrib/pull/45390" target="_blank" rel="noopener">View PR →</a>
-      </article>
 
-      <!-- Wazuh upstream PRs -->
-      <article class="card">
-        <div class="card-head">
-          <span class="badge badge-upstream">Upstream</span>
-          <span class="badge badge-review">Review Needed</span>
-          <span class="badge badge-windows">Windows</span>
+        <div class="actions">
+          <a class="btn" href="#pull-requests">Pull Requests</a>
+          <a class="btn" href="https://github.com/gustavo89587" target="_blank" rel="noopener">GitHub</a>
+          <!-- opcional: troque pro seu LinkedIn -->
+          <a class="btn" href="https://www.linkedin.com/in/" target="_blank" rel="noopener">LinkedIn</a>
         </div>
-        <h3>
-          <a href="https://github.com/wazuh/wazuh-ruleset/pull/908" target="_blank" rel="noopener">
-            Fix broken Sysmon EventID 1 (ProcessCreate) decoders and normalize regex patterns
-          </a>
-        </h3>
-        <p class="meta">Repo: wazuh/wazuh-ruleset · PR #908</p>
-        <p class="desc">
-          Decoder reliability + normalization for Sysmon Process Create telemetry to reduce parsing issues and improve downstream detections.
-        </p>
-        <a class="link" href="https://github.com/wazuh/wazuh-ruleset/pull/908" target="_blank" rel="noopener">View PR →</a>
-      </article>
+      </div>
 
-      <article class="card">
-        <div class="card-head">
-          <span class="badge badge-upstream">Upstream</span>
-          <span class="badge badge-review">Review Needed</span>
-          <span class="badge badge-windows">Windows</span>
-        </div>
-        <h3>
-          <a href="https://github.com/wazuh/wazuh-ruleset/pull/909" target="_blank" rel="noopener">
-            Improve Sysmon rule descriptions with triage-relevant context
-          </a>
-        </h3>
-        <p class="meta">Repo: wazuh/wazuh-ruleset · PR #909</p>
-        <p class="desc">
-          Improves analyst guidance: what to validate, expected benign patterns, and triage context to reduce time-to-decision.
-        </p>
-        <a class="link" href="https://github.com/wazuh/wazuh-ruleset/pull/909" target="_blank" rel="noopener">View PR →</a>
-      </article>
-
-      <article class="card">
-        <div class="card-head">
-          <span class="badge badge-upstream">Upstream</span>
-          <span class="badge badge-review">Review Needed</span>
-          <span class="badge badge-windows">Windows</span>
-        </div>
-        <h3>
-          <a href="https://github.com/wazuh/wazuh-ruleset/pull/910" target="_blank" rel="noopener">
-            rules: remove duplicate Windows Defender errorCode rules
-          </a>
-        </h3>
-        <p class="meta">Repo: wazuh/wazuh-ruleset · PR #910</p>
-        <p class="desc">
-          Removes duplicated Windows Defender errorCode rules to reduce clutter and avoid inconsistent rule behavior.
-        </p>
-        <a class="link" href="https://github.com/wazuh/wazuh-ruleset/pull/910" target="_blank" rel="noopener">View PR →</a>
-      </article>
-
-      <!-- SigmaHQ -->
-      <article class="card">
-        <div class="card-head">
-          <span class="badge badge-upstream">Upstream</span>
-          <span class="badge badge-review">Review Needed</span>
-          <span class="badge badge-windows">Windows</span>
-        </div>
-        <h3>
-          <a href="https://github.com/SigmaHQ/sigma/pull/5835" target="_blank" rel="noopener">
-            Improve description and false positive guidance for Sysmon configuration change rule
-          </a>
-        </h3>
-        <p class="meta">Repo: SigmaHQ/sigma · PR #5835</p>
-        <p class="desc">
-          Enhances rule documentation with clearer intent and false-positive guidance to improve SOC triage quality.
-        </p>
-        <a class="link" href="https://github.com/SigmaHQ/sigma/pull/5835" target="_blank" rel="noopener">View PR →</a>
-      </article>
-
-      <!-- Elastic fork PR (your repo) -->
-      <article class="card">
-        <div class="card-head">
-          <span class="badge badge-fork">Fork</span>
-          <span class="badge badge-docs">Docs</span>
-        </div>
-        <h3>
-          <a href="https://github.com/gustavo89587/detection-rules/pull/1" target="_blank" rel="noopener">
-            Docs: improve WinRAR/7-Zip encrypted archive rule guidance
-          </a>
-        </h3>
-        <p class="meta">Repo: gustavo89587/detection-rules · PR #1</p>
-        <p class="desc">
-          Improves documentation and triage guidance for encrypted archive detections to reduce noise and clarify analyst actions.
-        </p>
-        <a class="link" href="https://github.com/gustavo89587/detection-rules/pull/1" target="_blank" rel="noopener">View PR →</a>
-      </article>
-
-      <!-- Your forks in wazuh-ruleset -->
-      <article class="card">
-        <div class="card-head">
-          <span class="badge badge-fork">Fork</span>
-          <span class="badge badge-windows">Windows</span>
-        </div>
-        <h3>
-          <a href="https://github.com/gustavo89587/wazuh-ruleset/pull/1" target="_blank" rel="noopener">
-            Improve Sysmon rule descriptions with triage-relevant context
-          </a>
-        </h3>
-        <p class="meta">Repo: gustavo89587/wazuh-ruleset · PR #1</p>
-        <p class="desc">
-          Working branch PR in my fork used to stage improvements before upstream submission.
-        </p>
-        <a class="link" href="https://github.com/gustavo89587/wazuh-ruleset/pull/1" target="_blank" rel="noopener">View PR →</a>
-      </article>
-
-      <article class="card">
-        <div class="card-head">
-          <span class="badge badge-fork">Fork</span>
-          <span class="badge badge-windows">Windows</span>
-        </div>
-        <h3>
-          <a href="https://github.com/gustavo89587/wazuh-ruleset/pull/2" target="_blank" rel="noopener">
-            rules: remove duplicate Windows Defender errorCode rules
-          </a>
-        </h3>
-        <p class="meta">Repo: gustavo89587/wazuh-ruleset · PR #2</p>
-        <p class="desc">
-          Fork PR used to stage cleanup work prior to upstream submission.
-        </p>
-        <a class="link" href="https://github.com/gustavo89587/wazuh-ruleset/pull/2" target="_blank" rel="noopener">View PR →</a>
-      </article>
-
-      <!-- Semantic conventions repo -->
-      <article class="card">
-        <div class="card-head">
-          <span class="badge badge-fork">Fork</span>
-          <span class="badge badge-genai">GenAI</span>
-        </div>
-        <h3>
-          <a href="https://github.com/gustavo89587/semantic-conventions/pull/1" target="_blank" rel="noopener">
-            gen-ai: add requester security/abuse context attributes for requests
-          </a>
-        </h3>
-        <p class="meta">Repo: gustavo89587/semantic-conventions · PR #1</p>
-        <p class="desc">
-          Adds security/abuse context attributes for request telemetry to improve traceability and analysis of requester behavior.
-        </p>
-        <a class="link" href="https://github.com/gustavo89587/semantic-conventions/pull/1" target="_blank" rel="noopener">View PR →</a>
-      </article>
-
+      <nav>
+        <a class="pill" href="#pull-requests">PRs</a>
+        <a class="pill" href="https://github.com/gustavo89587/soc-incident-response-playbooks" target="_blank" rel="noopener">IR Playbooks</a>
+        <a class="pill" href="https://github.com/gustavo89587" target="_blank" rel="noopener">Repos</a>
+      </nav>
     </div>
-  </div>
-</section>
+  </header>
 
-<!-- ===== Minimal CSS for this section (drop into your stylesheet) ===== -->
-<style>
-  .section { padding: 48px 0; }
-  .container { max-width: 1100px; margin: 0 auto; padding: 0 16px; }
-  h2 { margin: 0 0 10px; font-size: 28px; letter-spacing: -0.02em; }
-  .muted { margin: 0 0 24px; opacity: .75; line-height: 1.5; }
+  <main>
+    <!-- ===== PRs (Open-Source Contributions) ===== -->
+    <section id="pull-requests" class="section">
+      <div class="container">
+        <h2>Pull Requests</h2>
+        <p class="muted">
+          A curated list of my public pull requests across open-source security and telemetry projects.
+        </p>
 
-  .grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+        <div class="grid">
 
-  .card {
-    border: 1px solid rgba(255,255,255,.12);
-    border-radius: 14px;
-    padding: 16px;
-    background: rgba(255,255,255,.03);
-  }
-  .card-head { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
-  .badge {
-    font-size: 12px;
-    padding: 4px 8px;
-    border-radius: 999px;
-    border: 1px solid rgba(255,255,255,.14);
-    opacity: .9;
-  }
-  .badge-upstream { }
-  .badge-fork { }
-  .badge-review { }
-  .badge-windows { }
-  .badge-docs { }
-  .badge-genai { }
+          <!-- OpenTelemetry -->
+          <article class="card">
+            <div class="card-head">
+              <span class="badge">Upstream</span>
+              <span class="badge">Docs</span>
+              <span class="badge">Telemetry</span>
+            </div>
+            <h3>
+              <a href="https://github.com/open-telemetry/opentelemetry-collector-contrib/pull/45390" target="_blank" rel="noopener">
+                clarify allowed_values and blocked_values precedence
+              </a>
+            </h3>
+            <p class="meta">Repo: open-telemetry/opentelemetry-collector-contrib · PR #45390</p>
+            <p class="desc">
+              Documents the precedence between allowed_values and blocked_values as discussed in #43826.
+            </p>
+            <a class="link" href="https://github.com/open-telemetry/opentelemetry-collector-contrib/pull/45390" target="_blank" rel="noopener">View PR →</a>
+          </article>
 
-  .meta { margin: 8px 0 10px; font-size: 13px; opacity: .72; }
-  .desc { margin: 0 0 12px; line-height: 1.55; opacity: .9; }
-  .link { display: inline-block; font-weight: 600; text-decoration: none; }
-  .link:hover { text-decoration: underline; }
+          <!-- Wazuh upstream PRs -->
+          <article class="card">
+            <div class="card-head">
+              <span class="badge">Upstream</span>
+              <span class="badge">Review Needed</span>
+              <span class="badge">Windows</span>
+            </div>
+            <h3>
+              <a href="https://github.com/wazuh/wazuh-ruleset/pull/908" target="_blank" rel="noopener">
+                Fix broken Sysmon EventID 1 (ProcessCreate) decoders and normalize regex patterns
+              </a>
+            </h3>
+            <p class="meta">Repo: wazuh/wazuh-ruleset · PR #908</p>
+            <p class="desc">
+              Decoder reliability + normalization for Sysmon Process Create telemetry to reduce parsing issues and improve downstream detections.
+            </p>
+            <a class="link" href="https://github.com/wazuh/wazuh-ruleset/pull/908" target="_blank" rel="noopener">View PR →</a>
+          </article>
 
-  /* Optional: make links inside titles look clean */
-  h3 { margin: 0; font-size: 16px; line-height: 1.35; }
-  h3 a { text-decoration: none; }
-  h3 a:hover { text-decoration: underline; }
-</style>
+          <article class="card">
+            <div class="card-head">
+              <span class="badge">Upstream</span>
+              <span class="badge">Review Needed</span>
+              <span class="badge">Windows</span>
+            </div>
+            <h3>
+              <a href="https://github.com/wazuh/wazuh-ruleset/pull/909" target="_blank" rel="noopener">
+                Improve Sysmon rule descriptions with triage-relevant context
+              </a>
+            </h3>
+            <p class="meta">Repo: wazuh/wazuh-ruleset · PR #909</p>
+            <p class="desc">
+              Improves analyst guidance: what to validate, expected benign patterns, and triage context to reduce time-to-decision.
+            </p>
+            <a class="link" href="https://github.com/wazuh/wazuh-ruleset/pull/909" target="_blank" rel="noopener">View PR →</a>
+          </article>
+
+          <article class="card">
+            <div class="card-head">
+              <span class="badge">Upstream</span>
+              <span class="badge">Review Needed</span>
+              <span class="badge">Windows</span>
+            </div>
+            <h3>
+              <a href="https://github.com/wazuh/wazuh-ruleset/pull/910" target="_blank" rel="noopener">
+                rules: remove duplicate Windows Defender errorCode rules
+              </a>
+            </h3>
+            <p class="meta">Repo: wazuh/wazuh-ruleset · PR #910</p>
+            <p class="desc">
+              Removes duplicated Windows Defender errorCode rules to reduce clutter and avoid inconsistent rule behavior.
+            </p>
+            <a class="link" href="https://github.com/wazuh/wazuh-ruleset/pull/910" target="_blank" rel="noopener">View PR →</a>
+          </article>
+
+          <!-- SigmaHQ -->
+          <article class="card">
+            <div class="card-head">
+              <span class="badge">Upstream</span>
+              <span class="badge">Review Needed</span>
+              <span class="badge">Windows</span>
+            </div>
+            <h3>
+              <a href="https://github.com/SigmaHQ/sigma/pull/5835" target="_blank" rel="noopener">
+                Improve description and false positive guidance for Sysmon configuration change rule
+              </a>
+            </h3>
+            <p class="meta">Repo: SigmaHQ/sigma · PR #5835</p>
+            <p class="desc">
+              Enhances rule documentation with clearer intent and false-positive guidance to improve SOC triage quality.
+            </p>
+            <a class="link" href="https://github.com/SigmaHQ/sigma/pull/5835" target="_blank" rel="noopener">View PR →</a>
+          </article>
+
+          <!-- Elastic fork PR (your repo) -->
+          <article class="card">
+            <div class="card-head">
+              <span class="badge">Fork</span>
+              <span class="badge">Docs</span>
+            </div>
+            <h3>
+              <a href="https://github.com/gustavo89587/detection-rules/pull/1" target="_blank" rel="noopener">
+                Docs: improve WinRAR/7-Zip encrypted archive rule guidance
+              </a>
+            </h3>
+            <p class="meta">Repo: gustavo89587/detection-rules · PR #1</p>
+            <p class="desc">
+              Improves documentation and triage guidance for encrypted archive detections to reduce noise and clarify analyst actions.
+            </p>
+            <a class="link" href="https://github.com/gustavo89587/detection-rules/pull/1" target="_blank" rel="noopener">View PR →</a>
+          </article>
+
+          <!-- Your forks in wazuh-ruleset -->
+          <article class="card">
+            <div class="card-head">
+              <span class="badge">Fork</span>
+              <span class="badge">Windows</span>
+            </div>
+            <h3>
+              <a href="https://github.com/gustavo89587/wazuh-ruleset/pull/1" target="_blank" rel="noopener">
+                Improve Sysmon rule descriptions with triage-relevant context
+              </a>
+            </h3>
+            <p class="meta">Repo: gustavo89587/wazuh-ruleset · PR #1</p>
+            <p class="desc">
+              Fork PR used to stage improvements before upstream submission.
+            </p>
+            <a class="link" href="https://github.com/gustavo89587/wazuh-ruleset/pull/1" target="_blank" rel="noopener">View PR →</a>
+          </article>
+
+          <article class="card">
+            <div class="card-head">
+              <span class="badge">Fork</span>
+              <span class="badge">Windows</span>
+            </div>
+            <h3>
+              <a href="https://github.com/gustavo89587/wazuh-ruleset/pull/2" target="_blank" rel="noopener">
+                rules: remove duplicate Windows Defender errorCode rules
+              </a>
+            </h3>
+            <p class="meta">Repo: gustavo89587/wazuh-ruleset · PR #2</p>
+            <p class="desc">
+              Fork PR used to stage cleanup work prior to upstream submission.
+            </p>
+            <a class="link" href="https://github.com/gustavo89587/wazuh-ruleset/pull/2" target="_blank" rel="noopener">View PR →</a>
+          </article>
+
+          <!-- Semantic conventions repo -->
+          <article class="card">
+            <div class="card-head">
+              <span class="badge">Fork</span>
+              <span class="badge">GenAI</span>
+            </div>
+            <h3>
+              <a href="https://github.com/gustavo89587/semantic-conventions/pull/1" target="_blank" rel="noopener">
+                gen-ai: add requester security/abuse context attributes for requests
+              </a>
+            </h3>
+            <p class="meta">Repo: gustavo89587/semantic-conventions · PR #1</p>
+            <p class="desc">
+              Adds security/abuse context attributes for request telemetry to improve traceability and analysis of requester behavior.
+            </p>
+            <a class="link" href="https://github.com/gustavo89587/semantic-conventions/pull/1" target="_blank" rel="noopener">View PR →</a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div>© <span id="y"></span> Gustavo. Built for signal: PRs, telemetry, detections.</div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
