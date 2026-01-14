@@ -3,413 +3,934 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Gustavo — Open Source Detection Engineering</title>
-  <meta name="description" content="Open-source contributions in detection engineering, telemetry, and security." />
   <meta name="color-scheme" content="dark light" />
+  <title>Gustavo (gustavo89587) — Detection Engineering Portfolio</title>
+  <meta name="description" content="Detection Engineering portfolio: open-source PRs across OpenTelemetry, Wazuh, and SigmaHQ. Focus: signal quality, parsing correctness, triage context, and false-positive reduction." />
 
   <style>
     :root{
-      --bg:#0b0f14;
-      --panel:rgba(255,255,255,.03);
-      --border:rgba(255,255,255,.12);
-      --text:rgba(255,255,255,.92);
-      --muted:rgba(255,255,255,.70);
-      --link:#8ab4f8;
-      --shadow:0 12px 40px rgba(0,0,0,.35);
-      --radius:16px;
+      --bg: #070A12;
+      --bg2:#0B1020;
+      --card: rgba(255,255,255,.06);
+      --card2: rgba(255,255,255,.09);
+      --line: rgba(255,255,255,.10);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.68);
+      --muted2: rgba(255,255,255,.55);
+      --shadow: 0 18px 50px rgba(0,0,0,.55);
+      --radius: 22px;
+      --radius2: 16px;
+      --pad: 18px;
+      --pad2: 14px;
+      --max: 1120px;
+
+      --gradA: radial-gradient(1200px 600px at 12% -10%, rgba(99,102,241,.35), transparent 60%);
+      --gradB: radial-gradient(1000px 600px at 88% 0%, rgba(34,197,94,.22), transparent 55%);
+      --gradC: radial-gradient(1000px 600px at 50% 105%, rgba(236,72,153,.18), transparent 55%);
+
+      --chip: rgba(255,255,255,.10);
+      --chipLine: rgba(255,255,255,.14);
+
+      --good: rgba(34,197,94,.22);
+      --warn: rgba(245,158,11,.22);
+      --info: rgba(99,102,241,.22);
+
+      --goodLine: rgba(34,197,94,.40);
+      --warnLine: rgba(245,158,11,.42);
+      --infoLine: rgba(99,102,241,.42);
     }
 
-    *{ box-sizing:border-box; }
-    html,body{ height:100%; }
+    @media (prefers-color-scheme: light){
+      :root{
+        --bg: #F6F7FB;
+        --bg2:#FFFFFF;
+        --card: rgba(0,0,0,.04);
+        --card2: rgba(0,0,0,.06);
+        --line: rgba(0,0,0,.10);
+        --text: rgba(0,0,0,.88);
+        --muted: rgba(0,0,0,.64);
+        --muted2: rgba(0,0,0,.52);
+        --shadow: 0 18px 50px rgba(0,0,0,.10);
+
+        --gradA: radial-gradient(1200px 600px at 12% -10%, rgba(99,102,241,.22), transparent 60%);
+        --gradB: radial-gradient(1000px 600px at 88% 0%, rgba(34,197,94,.14), transparent 55%);
+        --gradC: radial-gradient(1000px 600px at 50% 105%, rgba(236,72,153,.12), transparent 55%);
+
+        --chip: rgba(0,0,0,.05);
+        --chipLine: rgba(0,0,0,.10);
+      }
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      background: radial-gradient(1200px 600px at 20% -10%, rgba(138,180,248,.15), transparent 60%),
-                  radial-gradient(900px 500px at 90% 0%, rgba(255,255,255,.08), transparent 55%),
-                  var(--bg);
       color:var(--text);
-      line-height:1.55;
+      background:
+        var(--gradA),
+        var(--gradB),
+        var(--gradC),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+      letter-spacing: .2px;
     }
 
-    a{ color:var(--link); }
-    a:hover{ opacity:.9; }
-
-    .container{
-      max-width:1100px;
-      margin:0 auto;
-      padding:0 16px;
-    }
-
-    header{
-      padding:56px 0 22px;
-    }
-
+    a{color:inherit; text-decoration:none}
+    a:hover{opacity:.92}
+    .wrap{max-width:var(--max); margin:0 auto; padding:34px 18px 60px}
     .topbar{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      flex-wrap:wrap;
-    }
-
-    .brand{
-      display:flex;
-      flex-direction:column;
-      gap:6px;
-    }
-
-    .brand h1{
-      margin:0;
-      font-size:34px;
-      letter-spacing:-0.03em;
-      line-height:1.12;
-    }
-    .brand p{
-      margin:0;
-      color:var(--muted);
-      max-width:70ch;
-    }
-
-    .actions{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-    }
-
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
-      padding:10px 14px;
+      display:flex; gap:14px; align-items:center; justify-content:space-between;
+      padding:10px 12px;
+      border:1px solid var(--line);
       border-radius:999px;
-      border:1px solid var(--border);
-      background:var(--panel);
-      text-decoration:none;
-      color:var(--text);
-      font-weight:600;
+      background: linear-gradient(180deg, var(--card2), var(--card));
+      backdrop-filter: blur(10px);
       box-shadow: var(--shadow);
     }
-    .btn:hover{ transform: translateY(-1px); }
-
-    nav{
-      margin-top:18px;
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
+    .brand{
+      display:flex; align-items:center; gap:10px; min-width: 240px;
+    }
+    .avatar{
+      width:34px; height:34px; border-radius:12px;
+      background: linear-gradient(135deg, rgba(99,102,241,.85), rgba(34,197,94,.75));
+      border:1px solid rgba(255,255,255,.18);
+      box-shadow: 0 10px 30px rgba(0,0,0,.25);
+      position:relative;
+      overflow:hidden;
+    }
+    .avatar::after{
+      content:"";
+      position:absolute; inset:-40%;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.35), transparent 55%);
+      transform: rotate(18deg);
+    }
+    .brand strong{font-size:14px; line-height:1}
+    .brand .sub{font-size:12px; color:var(--muted); margin-top:2px}
+    .nav{
+      display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end;
     }
     .pill{
-      padding:6px 10px;
+      font-size:12px;
+      padding:8px 10px;
       border-radius:999px;
-      border:1px solid var(--border);
-      background:rgba(255,255,255,.02);
-      text-decoration:none;
-      color:var(--muted);
-      font-size:14px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
     }
-    .pill:hover{ color:var(--text); }
-
-    main{ padding: 10px 0 70px; }
-
-    .section{ padding: 42px 0; }
-    .section h2{
-      margin:0 0 10px;
-      font-size:26px;
-      letter-spacing:-0.02em;
+    .pill:hover{color:var(--text); border-color: rgba(255,255,255,.18)}
+    .cta{
+      display:flex; gap:8px; align-items:center;
     }
-    .muted{ margin:0 0 22px; color:var(--muted); }
+    .btn{
+      font-size:12px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      color: var(--text);
+      cursor:pointer;
+      transition: transform .12s ease, background .12s ease;
+      user-select:none;
+    }
+    .btn:hover{transform: translateY(-1px)}
+    .btn.primary{
+      border-color: rgba(99,102,241,.45);
+      background: linear-gradient(180deg, rgba(99,102,241,.30), rgba(99,102,241,.12));
+    }
 
-    .grid{
+    .hero{
+      margin-top:22px;
       display:grid;
-      gap:16px;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap:14px;
+      grid-template-columns: 1.3fr .7fr;
+    }
+
+    @media (max-width: 960px){
+      .hero{grid-template-columns: 1fr}
+      .brand{min-width: unset}
     }
 
     .card{
-      border:1px solid var(--border);
+      border: 1px solid var(--line);
       border-radius: var(--radius);
-      padding:16px;
-      background: var(--panel);
+      background: linear-gradient(180deg, var(--card2), var(--card));
       box-shadow: var(--shadow);
-      backdrop-filter: blur(6px);
+      overflow:hidden;
+      position:relative;
     }
-
-    .card-head{
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-      margin-bottom:10px;
+    .card .inner{padding: 20px}
+    .kicker{
+      font-size:12px; color: var(--muted);
+      display:flex; align-items:center; gap:8px;
     }
-
-    .badge{
-      font-size:12px;
-      padding:4px 8px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.14);
+    .dot{
+      width:8px; height:8px; border-radius:50%;
+      background: rgba(99,102,241,.9);
+      box-shadow: 0 0 0 6px rgba(99,102,241,.18);
+    }
+    h1{
+      margin:10px 0 8px;
+      font-size: 34px;
+      line-height: 1.08;
+      letter-spacing: -0.6px;
+    }
+    .lead{
       color: var(--muted);
-      background: rgba(255,255,255,.02);
+      font-size: 14px;
+      line-height: 1.6;
+      margin: 0 0 14px;
+      max-width: 65ch;
+    }
+    .chips{
+      display:flex; flex-wrap:wrap; gap:8px;
+      margin-top: 12px;
+    }
+    .chip{
+      font-size:12px;
+      padding:7px 10px;
+      border-radius:999px;
+      background: var(--chip);
+      border:1px solid var(--chipLine);
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    /* Bento grid */
+    .bento{
+      margin-top: 14px;
+      display:grid;
+      gap:14px;
+      grid-template-columns: repeat(12, 1fr);
+      align-items: stretch;
+    }
+    .span-12{grid-column: span 12;}
+    .span-8{grid-column: span 8;}
+    .span-7{grid-column: span 7;}
+    .span-6{grid-column: span 6;}
+    .span-5{grid-column: span 5;}
+    .span-4{grid-column: span 4;}
+    .span-3{grid-column: span 3;}
+    @media (max-width: 960px){
+      .span-8,.span-7,.span-6,.span-5,.span-4,.span-3{grid-column: span 12;}
+    }
+
+    .section-title{
+      display:flex; align-items:flex-end; justify-content:space-between; gap:14px;
+      margin: 26px 2px 12px;
+    }
+    .section-title h2{
+      margin:0;
+      font-size: 16px;
+      letter-spacing: .2px;
+    }
+    .section-title p{
+      margin:0;
+      color: var(--muted2);
+      font-size: 12px;
+    }
+
+    .mini{
+      padding: var(--pad);
+    }
+    .mini h3{
+      margin:0 0 8px;
+      font-size: 13px;
+      color: var(--text);
+      letter-spacing: .2px;
+    }
+    .mini .text{
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--muted);
+      margin:0;
+    }
+
+    .statgrid{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap:10px;
+      margin-top: 10px;
+    }
+    .stat{
+      border:1px solid var(--line);
+      border-radius: var(--radius2);
+      padding: 12px;
+      background: rgba(255,255,255,.03);
+    }
+    .stat .n{font-size:18px; font-weight:700; letter-spacing:-.2px}
+    .stat .l{font-size:12px; color: var(--muted); margin-top:2px}
+
+    /* PR cards */
+    .toolbar{
+      display:flex; gap:10px; flex-wrap:wrap; justify-content:space-between; align-items:center;
+      margin: 6px 0 0;
+    }
+    .search{
+      flex: 1 1 280px;
+      display:flex; gap:10px; align-items:center;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+    }
+    .search input{
+      width:100%;
+      border:none; outline:none; background:transparent;
+      color:var(--text);
+      font-size: 13px;
+    }
+    .filters{
+      display:flex; gap:8px; flex-wrap:wrap;
+    }
+    .fbtn{
+      font-size:12px;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      color: var(--muted);
+      cursor:pointer;
+      user-select:none;
+    }
+    .fbtn.active{
+      color: var(--text);
+      border-color: rgba(99,102,241,.45);
+      background: rgba(99,102,241,.16);
+    }
+
+    .pr-grid{
+      margin-top: 12px;
+      display:grid;
+      gap:14px;
+      grid-template-columns: repeat(12, 1fr);
+    }
+    .pr{
+      grid-column: span 6;
+      padding: 16px;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.04));
+      position:relative;
+      overflow:hidden;
+    }
+    .pr:hover{border-color: rgba(255,255,255,.18)}
+    @media (max-width: 960px){ .pr{grid-column: span 12;} }
+    .pr .top{
+      display:flex; gap:10px; justify-content:space-between; align-items:flex-start;
+    }
+    .repo{
+      font-size:12px; color: var(--muted);
+      display:flex; gap:8px; align-items:center; flex-wrap:wrap;
+    }
+    .badge{
+      font-size:11px;
+      padding:6px 8px;
+      border-radius:999px;
+      border:1px solid var(--chipLine);
+      background: var(--chip);
+      color: var(--muted);
       white-space:nowrap;
     }
+    .badge.good{background: var(--good); border-color: var(--goodLine); color: var(--text);}
+    .badge.warn{background: var(--warn); border-color: var(--warnLine); color: var(--text);}
+    .badge.info{background: var(--info); border-color: var(--infoLine); color: var(--text);}
 
-    .meta{
-      margin:8px 0 10px;
-      font-size:13px;
-      color:var(--muted);
-    }
-
-    .desc{
-      margin:0 0 12px;
-      color:rgba(255,255,255,.86);
-    }
-
-    .link{
-      display:inline-block;
-      font-weight:700;
-      text-decoration:none;
-    }
-    .link:hover{ text-decoration:underline; }
-
-    h3{
-      margin:0;
-      font-size:16px;
+    .pr h4{
+      margin: 10px 0 6px;
+      font-size: 14px;
+      letter-spacing: .1px;
       line-height:1.35;
-      letter-spacing:-0.01em;
     }
-    h3 a{ text-decoration:none; color: var(--link); }
-    h3 a:hover{ text-decoration:underline; }
-
-    footer{
-      padding:26px 0 48px;
-      color:var(--muted);
-      border-top:1px solid var(--border);
-      background: rgba(0,0,0,.12);
+    .pr .meta{
+      font-size:12px; color: var(--muted2);
+      margin: 0 0 10px;
+      display:flex; gap:10px; flex-wrap:wrap;
     }
-
-    /* Small screens */
-    @media (max-width:520px){
-      .brand h1{ font-size:28px; }
-      .btn{ width:100%; }
-      .actions{ width:100%; }
+    .pr .desc{
+      font-size:13px;
+      line-height: 1.55;
+      color: var(--muted);
+      margin: 0;
     }
+    .pr .linkrow{
+      margin-top: 12px;
+      display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;
+    }
+    .pr a.prlink{
+      font-size:12px;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      color: var(--text);
+    }
+    .muted{color:var(--muted)}
+    .footer{
+      margin-top: 30px;
+      display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap;
+      color: var(--muted2);
+      font-size:12px;
+      padding: 0 4px;
+    }
+    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;}
+    .sr{position:absolute; left:-9999px}
   </style>
 </head>
 
 <body>
-  <header>
-    <div class="container">
-      <div class="topbar">
-        <div class="brand">
-          <h1>Gustavo — Detection Engineering</h1>
-          <p>
-            Open-source contributions focused on Windows telemetry, detection logic, parsing correctness,
-            and triage-quality guidance.
-          </p>
-        </div>
-
-        <div class="actions">
-          <a class="btn" href="#pull-requests">Pull Requests</a>
-          <a class="btn" href="https://github.com/gustavo89587" target="_blank" rel="noopener">GitHub</a>
-          <!-- opcional: troque pro seu LinkedIn -->
-          <a class="btn" href="https://www.linkedin.com/in/" target="_blank" rel="noopener">LinkedIn</a>
+  <div class="wrap">
+    <header class="topbar" role="banner">
+      <div class="brand">
+        <div class="avatar" aria-hidden="true"></div>
+        <div>
+          <strong>Gustavo <span class="muted">(gustavo89587)</span></strong>
+          <div class="sub">Detection Engineering • Blue Team • OSS Contributions</div>
         </div>
       </div>
 
-      <nav>
-        <a class="pill" href="#pull-requests">PRs</a>
-        <a class="pill" href="https://github.com/gustavo89587/soc-incident-response-playbooks" target="_blank" rel="noopener">IR Playbooks</a>
-        <a class="pill" href="https://github.com/gustavo89587" target="_blank" rel="noopener">Repos</a>
+      <nav class="nav" aria-label="Primary">
+        <a class="pill" href="#about">About</a>
+        <a class="pill" href="#capabilities">Capabilities</a>
+        <a class="pill" href="#contributions">PRs</a>
+        <a class="pill" href="#contact">Contact</a>
       </nav>
-    </div>
-  </header>
 
-  <main>
-    <!-- ===== PRs (Open-Source Contributions) ===== -->
-    <section id="pull-requests" class="section">
-      <div class="container">
-        <h2>Pull Requests</h2>
-        <p class="muted">
-          A curated list of my public pull requests across open-source security and telemetry projects.
-        </p>
-
-        <div class="grid">
-
-          <!-- OpenTelemetry -->
-          <article class="card">
-            <div class="card-head">
-              <span class="badge">Upstream</span>
-              <span class="badge">Docs</span>
-              <span class="badge">Telemetry</span>
-            </div>
-            <h3>
-              <a href="https://github.com/open-telemetry/opentelemetry-collector-contrib/pull/45390" target="_blank" rel="noopener">
-                clarify allowed_values and blocked_values precedence
-              </a>
-            </h3>
-            <p class="meta">Repo: open-telemetry/opentelemetry-collector-contrib · PR #45390</p>
-            <p class="desc">
-              Documents the precedence between allowed_values and blocked_values as discussed in #43826.
-            </p>
-            <a class="link" href="https://github.com/open-telemetry/opentelemetry-collector-contrib/pull/45390" target="_blank" rel="noopener">View PR →</a>
-          </article>
-
-          <!-- Wazuh upstream PRs -->
-          <article class="card">
-            <div class="card-head">
-              <span class="badge">Upstream</span>
-              <span class="badge">Review Needed</span>
-              <span class="badge">Windows</span>
-            </div>
-            <h3>
-              <a href="https://github.com/wazuh/wazuh-ruleset/pull/908" target="_blank" rel="noopener">
-                Fix broken Sysmon EventID 1 (ProcessCreate) decoders and normalize regex patterns
-              </a>
-            </h3>
-            <p class="meta">Repo: wazuh/wazuh-ruleset · PR #908</p>
-            <p class="desc">
-              Decoder reliability + normalization for Sysmon Process Create telemetry to reduce parsing issues and improve downstream detections.
-            </p>
-            <a class="link" href="https://github.com/wazuh/wazuh-ruleset/pull/908" target="_blank" rel="noopener">View PR →</a>
-          </article>
-
-          <article class="card">
-            <div class="card-head">
-              <span class="badge">Upstream</span>
-              <span class="badge">Review Needed</span>
-              <span class="badge">Windows</span>
-            </div>
-            <h3>
-              <a href="https://github.com/wazuh/wazuh-ruleset/pull/909" target="_blank" rel="noopener">
-                Improve Sysmon rule descriptions with triage-relevant context
-              </a>
-            </h3>
-            <p class="meta">Repo: wazuh/wazuh-ruleset · PR #909</p>
-            <p class="desc">
-              Improves analyst guidance: what to validate, expected benign patterns, and triage context to reduce time-to-decision.
-            </p>
-            <a class="link" href="https://github.com/wazuh/wazuh-ruleset/pull/909" target="_blank" rel="noopener">View PR →</a>
-          </article>
-
-          <article class="card">
-            <div class="card-head">
-              <span class="badge">Upstream</span>
-              <span class="badge">Review Needed</span>
-              <span class="badge">Windows</span>
-            </div>
-            <h3>
-              <a href="https://github.com/wazuh/wazuh-ruleset/pull/910" target="_blank" rel="noopener">
-                rules: remove duplicate Windows Defender errorCode rules
-              </a>
-            </h3>
-            <p class="meta">Repo: wazuh/wazuh-ruleset · PR #910</p>
-            <p class="desc">
-              Removes duplicated Windows Defender errorCode rules to reduce clutter and avoid inconsistent rule behavior.
-            </p>
-            <a class="link" href="https://github.com/wazuh/wazuh-ruleset/pull/910" target="_blank" rel="noopener">View PR →</a>
-          </article>
-
-          <!-- SigmaHQ -->
-          <article class="card">
-            <div class="card-head">
-              <span class="badge">Upstream</span>
-              <span class="badge">Review Needed</span>
-              <span class="badge">Windows</span>
-            </div>
-            <h3>
-              <a href="https://github.com/SigmaHQ/sigma/pull/5835" target="_blank" rel="noopener">
-                Improve description and false positive guidance for Sysmon configuration change rule
-              </a>
-            </h3>
-            <p class="meta">Repo: SigmaHQ/sigma · PR #5835</p>
-            <p class="desc">
-              Enhances rule documentation with clearer intent and false-positive guidance to improve SOC triage quality.
-            </p>
-            <a class="link" href="https://github.com/SigmaHQ/sigma/pull/5835" target="_blank" rel="noopener">View PR →</a>
-          </article>
-
-          <!-- Elastic fork PR (your repo) -->
-          <article class="card">
-            <div class="card-head">
-              <span class="badge">Fork</span>
-              <span class="badge">Docs</span>
-            </div>
-            <h3>
-              <a href="https://github.com/gustavo89587/detection-rules/pull/1" target="_blank" rel="noopener">
-                Docs: improve WinRAR/7-Zip encrypted archive rule guidance
-              </a>
-            </h3>
-            <p class="meta">Repo: gustavo89587/detection-rules · PR #1</p>
-            <p class="desc">
-              Improves documentation and triage guidance for encrypted archive detections to reduce noise and clarify analyst actions.
-            </p>
-            <a class="link" href="https://github.com/gustavo89587/detection-rules/pull/1" target="_blank" rel="noopener">View PR →</a>
-          </article>
-
-          <!-- Your forks in wazuh-ruleset -->
-          <article class="card">
-            <div class="card-head">
-              <span class="badge">Fork</span>
-              <span class="badge">Windows</span>
-            </div>
-            <h3>
-              <a href="https://github.com/gustavo89587/wazuh-ruleset/pull/1" target="_blank" rel="noopener">
-                Improve Sysmon rule descriptions with triage-relevant context
-              </a>
-            </h3>
-            <p class="meta">Repo: gustavo89587/wazuh-ruleset · PR #1</p>
-            <p class="desc">
-              Fork PR used to stage improvements before upstream submission.
-            </p>
-            <a class="link" href="https://github.com/gustavo89587/wazuh-ruleset/pull/1" target="_blank" rel="noopener">View PR →</a>
-          </article>
-
-          <article class="card">
-            <div class="card-head">
-              <span class="badge">Fork</span>
-              <span class="badge">Windows</span>
-            </div>
-            <h3>
-              <a href="https://github.com/gustavo89587/wazuh-ruleset/pull/2" target="_blank" rel="noopener">
-                rules: remove duplicate Windows Defender errorCode rules
-              </a>
-            </h3>
-            <p class="meta">Repo: gustavo89587/wazuh-ruleset · PR #2</p>
-            <p class="desc">
-              Fork PR used to stage cleanup work prior to upstream submission.
-            </p>
-            <a class="link" href="https://github.com/gustavo89587/wazuh-ruleset/pull/2" target="_blank" rel="noopener">View PR →</a>
-          </article>
-
-          <!-- Semantic conventions repo -->
-          <article class="card">
-            <div class="card-head">
-              <span class="badge">Fork</span>
-              <span class="badge">GenAI</span>
-            </div>
-            <h3>
-              <a href="https://github.com/gustavo89587/semantic-conventions/pull/1" target="_blank" rel="noopener">
-                gen-ai: add requester security/abuse context attributes for requests
-              </a>
-            </h3>
-            <p class="meta">Repo: gustavo89587/semantic-conventions · PR #1</p>
-            <p class="desc">
-              Adds security/abuse context attributes for request telemetry to improve traceability and analysis of requester behavior.
-            </p>
-            <a class="link" href="https://github.com/gustavo89587/semantic-conventions/pull/1" target="_blank" rel="noopener">View PR →</a>
-          </article>
-
-        </div>
+      <div class="cta">
+        <a class="btn" href="https://github.com/gustavo89587" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn primary" href="#contributions">View PRs</a>
       </div>
-    </section>
-  </main>
+    </header>
 
-  <footer>
-    <div class="container">
-      <div>© <span id="y"></span> Gustavo. Built for signal: PRs, telemetry, detections.</div>
+    <section class="hero" id="about">
+      <article class="card">
+        <div class="inner">
+          <div class="kicker"><span class="dot"></span><span class="mono">Signal &gt; Noise</span></div>
+          <h1>Detection Engineer focused on telemetry correctness and high-fidelity alerts.</h1>
+          <p class="lead">
+            I build detections that survive production: starting from attacker intent, mapping to observable behavior,
+            choosing the right telemetry, designing logic, reducing false positives, and documenting triage context.
+            Recent work: OpenTelemetry semantic conventions, Wazuh ruleset improvements, and Sigma rule guidance.
+          </p>
+
+          <div class="chips" aria-label="Key strengths">
+            <span class="chip">Intent → Behavior → Telemetry → Logic</span>
+            <span class="chip">Noise reduction & triage context</span>
+            <span class="chip">Windows / Sysmon / Defender</span>
+            <span class="chip">Detection content for real SOCs</span>
+          </div>
+        </div>
+      </article>
+
+      <aside class="card">
+        <div class="inner mini">
+          <h3>Now</h3>
+          <p class="text">
+            Shipping upstream improvements and documentation that make detections clearer, less noisy, and easier to triage.
+          </p>
+
+          <div class="statgrid" aria-label="Highlights">
+            <div class="stat">
+              <div class="n">9</div>
+              <div class="l">Recent PRs listed</div>
+            </div>
+            <div class="stat">
+              <div class="n">3</div>
+              <div class="l">Major ecosystems</div>
+            </div>
+            <div class="stat">
+              <div class="n">Windows</div>
+              <div class="l">Primary focus</div>
+            </div>
+            <div class="stat">
+              <div class="n">Review</div>
+              <div class="l">Upstream-ready</div>
+            </div>
+          </div>
+
+          <div class="chips" style="margin-top:12px">
+            <span class="chip">OpenTelemetry</span>
+            <span class="chip">Wazuh</span>
+            <span class="chip">SigmaHQ</span>
+            <span class="chip">Elastic-style guidance</span>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <div class="section-title" id="capabilities">
+      <div>
+        <h2>Capabilities</h2>
+        <p>How I think and what I ship</p>
+      </div>
+      <p class="mono">production-survivable detections</p>
     </div>
-  </footer>
+
+    <section class="bento" aria-label="Capabilities grid">
+      <article class="card span-7">
+        <div class="inner mini">
+          <h3>Detection engineering workflow</h3>
+          <p class="text">
+            Start with adversary intent, translate to behavior, select telemetry that’s actually present, write logic with
+            explicit assumptions, then reduce noise with context (paths, parent/child, user, host roles).
+            Validate with sample events and document triage steps for analysts.
+          </p>
+          <div class="chips">
+            <span class="chip">Assumption-driven design</span>
+            <span class="chip">False-positive reduction</span>
+            <span class="chip">Triage readiness</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="card span-5">
+        <div class="inner mini">
+          <h3>What I optimize for</h3>
+          <p class="text">
+            Analyst time is the most expensive resource in the SOC. I focus on detections that are explainable,
+            actionable, and maintainable—so the alert page helps the responder, not the attacker.
+          </p>
+          <div class="chips">
+            <span class="chip">High precision</span>
+            <span class="chip">Clear documentation</span>
+            <span class="chip">Low maintenance cost</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="card span-4">
+        <div class="inner mini">
+          <h3>Telemetry</h3>
+          <p class="text">
+            Windows Event Logs, Sysmon, Defender signals. Focus on event normalization and decoder correctness.
+          </p>
+          <div class="chips">
+            <span class="chip">Sysmon</span>
+            <span class="chip">Process Create</span>
+            <span class="chip">Defender</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="card span-4">
+        <div class="inner mini">
+          <h3>Quality controls</h3>
+          <p class="text">
+            Guardrails for noise: allow/deny lists, path context, parent process checks, and documentation of expected benign cases.
+          </p>
+          <div class="chips">
+            <span class="chip">Allow/Block precedence</span>
+            <span class="chip">Context-aware logic</span>
+            <span class="chip">FP guidance</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="card span-4">
+        <div class="inner mini">
+          <h3>Upstream mindset</h3>
+          <p class="text">
+            PRs that are reviewable: scoped changes, clear descriptions, and work that improves the ecosystem for many teams.
+          </p>
+          <div class="chips">
+            <span class="chip">Small diffs</span>
+            <span class="chip">Reviewer-friendly</span>
+            <span class="chip">Docs + logic</span>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <div class="section-title" id="contributions">
+      <div>
+        <h2>Open-source pull requests</h2>
+        <p>Search and filter by ecosystem</p>
+      </div>
+      <p class="mono"><span id="countShown">0</span>/<span id="countTotal">0</span> shown</p>
+    </div>
+
+    <div class="toolbar" aria-label="PR toolbar">
+      <div class="search" role="search">
+        <span class="mono muted" aria-hidden="true">/</span>
+        <label class="sr" for="q">Search PRs</label>
+        <input id="q" type="search" placeholder="Search: repo, title, tags (e.g., sysmon, opentelemetry, wazuh)..." autocomplete="off" />
+      </div>
+
+      <div class="filters" aria-label="Filters">
+        <button class="fbtn active" data-filter="all" type="button">All</button>
+        <button class="fbtn" data-filter="opentelemetry" type="button">OpenTelemetry</button>
+        <button class="fbtn" data-filter="wazuh" type="button">Wazuh</button>
+        <button class="fbtn" data-filter="sigma" type="button">SigmaHQ</button>
+        <button class="fbtn" data-filter="fork" type="button">Forks</button>
+        <button class="fbtn" data-filter="review" type="button">Review required</button>
+      </div>
+    </div>
+
+    <section class="pr-grid" id="prGrid" aria-label="Pull request grid">
+      <!-- OpenTelemetry -->
+      <article class="pr" data-eco="opentelemetry" data-review="true" data-fork="false"
+        data-tags="opentelemetry semantic-conventions genai tool_call_response schema">
+        <div class="top">
+          <div class="repo">
+            <span class="badge info">OpenTelemetry</span>
+            <span class="badge warn">Review required</span>
+            <span class="badge">Upstream</span>
+          </div>
+          <span class="badge">#3281</span>
+        </div>
+        <h4>Clarify role for <span class="mono">tool_call_response</span> message parts</h4>
+        <div class="meta">
+          <span class="mono">open-telemetry/semantic-conventions</span>
+          <span>Opened 17 hours ago</span>
+          <span class="mono">by gustavo89587</span>
+        </div>
+        <p class="desc">
+          Tightens semantic meaning in message part roles to reduce ambiguity and improve downstream parsing and validation.
+        </p>
+        <div class="linkrow">
+          <a class="prlink" href="https://github.com/open-telemetry/semantic-conventions/pull/3281" target="_blank" rel="noopener">Open PR</a>
+          <span class="muted mono">tasks: 3</span>
+        </div>
+      </article>
+
+      <article class="pr" data-eco="opentelemetry" data-review="true" data-fork="false"
+        data-tags="opentelemetry collector contrib redactionprocessor allowlist blocklist precedence">
+        <div class="top">
+          <div class="repo">
+            <span class="badge info">OpenTelemetry</span>
+            <span class="badge warn">Review required</span>
+            <span class="badge">Upstream</span>
+          </div>
+          <span class="badge">#45390</span>
+        </div>
+        <h4>redactionprocessor: clarify <span class="mono">allowed_values</span> and <span class="mono">blocked_values</span> precedence</h4>
+        <div class="meta">
+          <span class="mono">open-telemetry/opentelemetry-collector-contrib</span>
+          <span>Opened yesterday</span>
+          <span class="mono">by gustavo89587</span>
+        </div>
+        <p class="desc">
+          Improves documentation clarity around allow/block behavior to prevent misconfiguration and unexpected redaction results.
+        </p>
+        <div class="linkrow">
+          <a class="prlink" href="https://github.com/open-telemetry/opentelemetry-collector-contrib/pull/45390" target="_blank" rel="noopener">Open PR</a>
+          <span class="muted mono">@bogdandrutu</span>
+        </div>
+      </article>
+
+      <!-- Fork PR -->
+      <article class="pr" data-eco="opentelemetry" data-review="false" data-fork="true"
+        data-tags="gen-ai semantic-conventions security abuse requester attributes">
+        <div class="top">
+          <div class="repo">
+            <span class="badge info">OpenTelemetry</span>
+            <span class="badge good">Fork PR</span>
+            <span class="badge">Draft work</span>
+          </div>
+          <span class="badge">#1</span>
+        </div>
+        <h4>gen-ai: add requester security/abuse context attributes for requests</h4>
+        <div class="meta">
+          <span class="mono">gustavo89587/semantic-conventions</span>
+          <span>Opened 2 days ago</span>
+          <span class="mono">by gustavo89587</span>
+        </div>
+        <p class="desc">
+          Adds security/abuse context attributes to help teams reason about request provenance and risk when instrumenting GenAI workloads.
+        </p>
+        <div class="linkrow">
+          <a class="prlink" href="https://github.com/gustavo89587/semantic-conventions/pull/1" target="_blank" rel="noopener">Open PR</a>
+          <span class="muted mono">fork</span>
+        </div>
+      </article>
+
+      <!-- Wazuh -->
+      <article class="pr" data-eco="wazuh" data-review="true" data-fork="false"
+        data-tags="wazuh ruleset windows defender duplicate errorcode">
+        <div class="top">
+          <div class="repo">
+            <span class="badge info">Wazuh</span>
+            <span class="badge warn">Review required</span>
+            <span class="badge">Upstream</span>
+          </div>
+          <span class="badge">#910</span>
+        </div>
+        <h4>rules: remove duplicate Windows Defender <span class="mono">errorCode</span> rules</h4>
+        <div class="meta">
+          <span class="mono">wazuh/wazuh-ruleset</span>
+          <span>Opened 3 days ago</span>
+          <span class="mono">by gustavo89587</span>
+        </div>
+        <p class="desc">
+          Removes duplication to reduce rule bloat and conflicting matches, improving maintainability and analyst confidence.
+        </p>
+        <div class="linkrow">
+          <a class="prlink" href="https://github.com/wazuh/wazuh-ruleset/pull/910" target="_blank" rel="noopener">Open PR</a>
+          <span class="muted mono">upstream</span>
+        </div>
+      </article>
+
+      <article class="pr" data-eco="wazuh" data-review="false" data-fork="true"
+        data-tags="wazuh ruleset windows defender duplicate errorcode">
+        <div class="top">
+          <div class="repo">
+            <span class="badge info">Wazuh</span>
+            <span class="badge good">Fork PR</span>
+            <span class="badge">Mirror</span>
+          </div>
+          <span class="badge">#2</span>
+        </div>
+        <h4>rules: remove duplicate Windows Defender <span class="mono">errorCode</span> rules</h4>
+        <div class="meta">
+          <span class="mono">gustavo89587/wazuh-ruleset</span>
+          <span>Opened 3 days ago</span>
+          <span class="mono">by gustavo89587</span>
+        </div>
+        <p class="desc">
+          Fork mirror used to stage and validate changes before upstream submission.
+        </p>
+        <div class="linkrow">
+          <a class="prlink" href="https://github.com/gustavo89587/wazuh-ruleset/pull/2" target="_blank" rel="noopener">Open PR</a>
+          <span class="muted mono">fork</span>
+        </div>
+      </article>
+
+      <article class="pr" data-eco="wazuh" data-review="true" data-fork="false"
+        data-tags="wazuh sysmon triage context rule descriptions">
+        <div class="top">
+          <div class="repo">
+            <span class="badge info">Wazuh</span>
+            <span class="badge warn">Review required</span>
+            <span class="badge">Upstream</span>
+          </div>
+          <span class="badge">#909</span>
+        </div>
+        <h4>Improve Sysmon rule descriptions with triage-relevant context</h4>
+        <div class="meta">
+          <span class="mono">wazuh/wazuh-ruleset</span>
+          <span>Opened 3 days ago</span>
+          <span class="mono">by gustavo89587</span>
+        </div>
+        <p class="desc">
+          Adds responder-focused context so alerts explain “why this matters”, improving investigation speed and consistency.
+        </p>
+        <div class="linkrow">
+          <a class="prlink" href="https://github.com/wazuh/wazuh-ruleset/pull/909" target="_blank" rel="noopener">Open PR</a>
+          <span class="muted mono">sysmon</span>
+        </div>
+      </article>
+
+      <article class="pr" data-eco="wazuh" data-review="false" data-fork="true"
+        data-tags="wazuh sysmon triage context rule descriptions">
+        <div class="top">
+          <div class="repo">
+            <span class="badge info">Wazuh</span>
+            <span class="badge good">Fork PR</span>
+            <span class="badge">Mirror</span>
+          </div>
+          <span class="badge">#1</span>
+        </div>
+        <h4>Improve Sysmon rule descriptions with triage-relevant context</h4>
+        <div class="meta">
+          <span class="mono">gustavo89587/wazuh-ruleset</span>
+          <span>Opened 3 days ago</span>
+          <span class="mono">by gustavo89587</span>
+        </div>
+        <p class="desc">
+          Fork mirror used for iteration and validation before upstream review.
+        </p>
+        <div class="linkrow">
+          <a class="prlink" href="https://github.com/gustavo89587/wazuh-ruleset/pull/1" target="_blank" rel="noopener">Open PR</a>
+          <span class="muted mono">fork</span>
+        </div>
+      </article>
+
+      <article class="pr" data-eco="wazuh" data-review="true" data-fork="false"
+        data-tags="wazuh sysmon decoder eventid1 processcreate regex normalize">
+        <div class="top">
+          <div class="repo">
+            <span class="badge info">Wazuh</span>
+            <span class="badge warn">Review required</span>
+            <span class="badge">Upstream</span>
+          </div>
+          <span class="badge">#908</span>
+        </div>
+        <h4>Fix broken Sysmon EventID 1 (ProcessCreate) decoders and normalize regex patterns</h4>
+        <div class="meta">
+          <span class="mono">wazuh/wazuh-ruleset</span>
+          <span>Opened 4 days ago</span>
+          <span class="mono">by gustavo89587</span>
+        </div>
+        <p class="desc">
+          Repairs parsing correctness so detections trigger on reliable fields, improving downstream rule quality and reducing misses.
+        </p>
+        <div class="linkrow">
+          <a class="prlink" href="https://github.com/wazuh/wazuh-ruleset/pull/908" target="_blank" rel="noopener">Open PR</a>
+          <span class="muted mono">decoder</span>
+        </div>
+      </article>
+
+      <!-- Detection-rules fork -->
+      <article class="pr" data-eco="wazuh" data-review="false" data-fork="true"
+        data-tags="elastic detection-rules docs winrar 7zip encrypted archive guidance">
+        <div class="top">
+          <div class="repo">
+            <span class="badge">Docs</span>
+            <span class="badge good">Fork PR</span>
+            <span class="badge">Guidance</span>
+          </div>
+          <span class="badge">#1</span>
+        </div>
+        <h4>Docs: improve WinRAR/7-Zip encrypted archive rule guidance</h4>
+        <div class="meta">
+          <span class="mono">gustavo89587/detection-rules</span>
+          <span>Opened 3 days ago</span>
+          <span class="mono">by gustavo89587</span>
+        </div>
+        <p class="desc">
+          Strengthens guidance for encrypted archive detections with triage context and false-positive considerations.
+        </p>
+        <div class="linkrow">
+          <a class="prlink" href="https://github.com/gustavo89587/detection-rules/pull/1" target="_blank" rel="noopener">Open PR</a>
+          <span class="muted mono">docs</span>
+        </div>
+      </article>
+
+      <!-- SigmaHQ -->
+      <article class="pr" data-eco="sigma" data-review="true" data-fork="false"
+        data-tags="sigma windows sysmon rule description false positives guidance configuration change">
+        <div class="top">
+          <div class="repo">
+            <span class="badge info">SigmaHQ</span>
+            <span class="badge warn">Review required</span>
+            <span class="badge">Upstream</span>
+          </div>
+          <span class="badge">#5835</span>
+        </div>
+        <h4>Improve description and false positive guidance for Sysmon configuration change rule</h4>
+        <div class="meta">
+          <span class="mono">SigmaHQ/sigma</span>
+          <span>Opened 5 days ago</span>
+          <span class="mono">by gustavo89587</span>
+        </div>
+        <p class="desc">
+          Improves analyst clarity and reduces noise by documenting realistic benign causes and investigation hints.
+        </p>
+        <div class="linkrow">
+          <a class="prlink" href="https://github.com/SigmaHQ/sigma/pull/5835" target="_blank" rel="noopener">Open PR</a>
+          <span class="muted mono">windows</span>
+        </div>
+      </article>
+    </section>
+
+    <div class="section-title" id="contact">
+      <div>
+        <h2>Contact</h2>
+        <p>Keep it simple</p>
+      </div>
+      <p class="mono">open to remote roles</p>
+    </div>
+
+    <section class="bento" aria-label="Contact grid">
+      <article class="card span-8">
+        <div class="inner mini">
+          <h3>What I’m looking for</h3>
+          <p class="text">
+            Detection Engineering / Blue Team roles where I can ship detection content, improve telemetry pipelines,
+            and build alert logic that analysts trust. Prefer remote-first.
+          </p>
+          <div class="chips">
+            <span class="chip">Detection Engineering</span>
+            <span class="chip">SOC Enablement</span>
+            <span class="chip">Telemetry / Normalization</span>
+            <span class="chip">Rule Quality</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="card span-4">
+        <div class="inner mini">
+          <h3>Links</h3>
+          <p class="text">
+            <span class="mono">GitHub:</span> <a href="https://github.com/gustavo89587" target="_blank" rel="noopener">github.com/gustavo89587</a><br />
+            <span class="mono">PR list:</span> <a href="#contributions">jump to PRs</a><br />
+            <span class="mono">Email:</span> <span class="muted">add your email here</span>
+          </p>
+          <div class="chips" style="margin-top:12px">
+            <span class="chip">Brazil (UTC-3)</span>
+            <span class="chip">English + PT-BR</span>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <footer class="footer" role="contentinfo">
+      <div>© <span id="yr"></span> Gustavo <span class="muted">(gustavo89587)</span></div>
+      <div class="mono muted">Built as a single-file Bento portfolio (index.html)</div>
+    </footer>
+  </div>
 
   <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
+    (function(){
+      const $ = (s, el=document)=>el.querySelector(s);
+      const $$ = (s, el=document)=>Array.from(el.querySelectorAll(s));
+
+      const q = $("#q");
+      const buttons = $$(".fbtn");
+      const cards = $$(".pr");
+      const total = $("#countTotal");
+      const shown = $("#countShown");
+      const year = $("#yr");
+
+      year.textContent = new Date().getFullYear();
+      total.textContent = String(cards.length);
+
+      let activeFilter = "all";
+
+      function matchFilter(card){
+        if(activeFilter === "all") return true;
+
+        if(activeFilter === "review") return card.dataset.review === "true";
+        if(activeFilter === "fork") return card.dataset.fork === "true";
+
+        return (card.dataset.eco || "").toLowerCase() === activeFilter;
+      }
+
+      function matchQuery(card, text){
+        if(!text) return true;
+        const hay = (
+          (card.querySelector("h4")?.textContent || "") + " " +
+          (card.querySelector(".meta")?.textContent || "") + " " +
+          (card.dataset.tags || "")
+        ).toLowerCase();
+        return hay.includes(text);
+      }
+
+      function render(){
+        const text = (q.value || "").trim().toLowerCase();
+        let n = 0;
+
+        for(const card of cards){
+          const ok = matchFilter(card) && matchQuery(card, text);
+          card.style.display = ok ? "" : "none";
+          if(ok) n++;
+        }
+        shown.textContent = String(n);
+      }
+
+      buttons.forEach(btn=>{
+        btn.addEventListener("click", ()=>{
+          buttons.forEach(b=>b.classList.remove("active"));
+          btn.classList.add("active");
+          activeFilter = btn.dataset.filter;
+          render();
+        });
+      });
+
+      q.addEventListener("input", render);
+
+      // initial
+      render();
+    })();
   </script>
 </body>
 </html>
