@@ -4,8 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="color-scheme" content="dark light" />
-  <title>Gustavo (gustavo89587) — Detection Engineering Portfolio</title>
-  <meta name="description" content="Detection Engineering portfolio: open-source PRs across OpenTelemetry, Wazuh, and SigmaHQ. Focus: signal quality, parsing correctness, triage context, and false-positive reduction." />
+  <title>Gustavo (gustavo89587) — Elastic-first Detection Engineering Portfolio</title>
+  <meta name="description" content="Elastic-first Detection Engineering portfolio. Open-source contributions across Elastic detection-rules, SigmaHQ, Wazuh, and OpenTelemetry. Focus: signal quality, telemetry correctness, triage context, and false-positive reduction." />
 
   <style>
     :root{
@@ -384,7 +384,7 @@
         <div class="avatar" aria-hidden="true"></div>
         <div>
           <strong>Gustavo <span class="muted">(gustavo89587)</span></strong>
-          <div class="sub">Detection Engineering • Blue Team • OSS Contributions</div>
+          <div class="sub">Elastic-first Detection Engineering • Blue Team • OSS</div>
         </div>
       </div>
 
@@ -405,18 +405,26 @@
       <article class="card">
         <div class="inner">
           <div class="kicker"><span class="dot"></span><span class="mono">Signal &gt; Noise</span></div>
-          <h1>Detection Engineer focused on telemetry correctness and high-fidelity alerts.</h1>
+          <h1>Elastic-first Detection Engineer building telemetry-aware alerts that survive production.</h1>
           <p class="lead">
-            I build detections that survive production: starting from attacker intent, mapping to observable behavior,
-            choosing the right telemetry, designing logic, reducing false positives, and documenting triage context.
-            Recent work: OpenTelemetry semantic conventions, Wazuh ruleset improvements, and Sigma rule guidance.
+            I design detection content end-to-end: attacker intent → observable behavior → telemetry selection → detection logic →
+            noise reduction → validation → triage context.
+            My core focus is Elastic-style detection quality, with satellite contributions in SigmaHQ, Wazuh, and OpenTelemetry to improve
+            telemetry correctness and upstream documentation.
           </p>
 
           <div class="chips" aria-label="Key strengths">
             <span class="chip">Intent → Behavior → Telemetry → Logic</span>
             <span class="chip">Noise reduction & triage context</span>
             <span class="chip">Windows / Sysmon / Defender</span>
-            <span class="chip">Detection content for real SOCs</span>
+            <span class="chip">Production-survivable detections</span>
+          </div>
+
+          <div class="chips" aria-label="Positioning" style="margin-top:10px">
+            <span class="chip">Elastic (core)</span>
+            <span class="chip">SigmaHQ (lab)</span>
+            <span class="chip">Wazuh (field)</span>
+            <span class="chip">OpenTelemetry (telemetry)</span>
           </div>
         </div>
       </article>
@@ -425,7 +433,8 @@
         <div class="inner mini">
           <h3>Now</h3>
           <p class="text">
-            Shipping upstream improvements and documentation that make detections clearer, less noisy, and easier to triage.
+            Core focus: Elastic-style detection quality. I ship upstream improvements that reduce noise, improve telemetry correctness,
+            and make alerts easier to triage.
           </p>
 
           <div class="statgrid" aria-label="Highlights">
@@ -434,8 +443,8 @@
               <div class="l">Recent PRs listed</div>
             </div>
             <div class="stat">
-              <div class="n">3</div>
-              <div class="l">Major ecosystems</div>
+              <div class="n">Core + satellites</div>
+              <div class="l">Elastic, SigmaHQ, Wazuh, OpenTelemetry</div>
             </div>
             <div class="stat">
               <div class="n">Windows</div>
@@ -448,10 +457,10 @@
           </div>
 
           <div class="chips" style="margin-top:12px">
-            <span class="chip">OpenTelemetry</span>
-            <span class="chip">Wazuh</span>
-            <span class="chip">SigmaHQ</span>
-            <span class="chip">Elastic-style guidance</span>
+            <span class="chip">High precision</span>
+            <span class="chip">Explainable alerts</span>
+            <span class="chip">Analyst-friendly triage</span>
+            <span class="chip">Low maintenance</span>
           </div>
         </div>
       </aside>
@@ -470,9 +479,8 @@
         <div class="inner mini">
           <h3>Detection engineering workflow</h3>
           <p class="text">
-            Start with adversary intent, translate to behavior, select telemetry that’s actually present, write logic with
-            explicit assumptions, then reduce noise with context (paths, parent/child, user, host roles).
-            Validate with sample events and document triage steps for analysts.
+            Start with adversary intent, translate to behavior, select telemetry that’s actually present, write logic with explicit assumptions,
+            then reduce noise with context (paths, parent/child, user, host roles). Validate with sample events and document triage steps for analysts.
           </p>
           <div class="chips">
             <span class="chip">Assumption-driven design</span>
@@ -486,8 +494,8 @@
         <div class="inner mini">
           <h3>What I optimize for</h3>
           <p class="text">
-            Analyst time is the most expensive resource in the SOC. I focus on detections that are explainable,
-            actionable, and maintainable—so the alert page helps the responder, not the attacker.
+            Analyst time is the most expensive resource in the SOC. I focus on detections that are explainable, actionable, and maintainable—
+            so the alert page helps the responder, not the attacker.
           </p>
           <div class="chips">
             <span class="chip">High precision</span>
@@ -501,7 +509,7 @@
         <div class="inner mini">
           <h3>Telemetry</h3>
           <p class="text">
-            Windows Event Logs, Sysmon, Defender signals. Focus on event normalization and decoder correctness.
+            Windows Event Logs, Sysmon, and Defender signals. Focus on event normalization and decoder correctness so detection logic is built on trustworthy fields.
           </p>
           <div class="chips">
             <span class="chip">Sysmon</span>
@@ -552,26 +560,28 @@
       <div class="search" role="search">
         <span class="mono muted" aria-hidden="true">/</span>
         <label class="sr" for="q">Search PRs</label>
-        <input id="q" type="search" placeholder="Search: repo, title, tags (e.g., sysmon, opentelemetry, wazuh)..." autocomplete="off" />
+        <input id="q" type="search" placeholder="Search: repo, title, tags (e.g., elastic, sysmon, opentelemetry, wazuh)..." autocomplete="off" />
       </div>
 
       <div class="filters" aria-label="Filters">
         <button class="fbtn active" data-filter="all" type="button">All</button>
-        <button class="fbtn" data-filter="opentelemetry" type="button">OpenTelemetry</button>
-        <button class="fbtn" data-filter="wazuh" type="button">Wazuh</button>
+        <button class="fbtn" data-filter="elastic" type="button">Elastic</button>
         <button class="fbtn" data-filter="sigma" type="button">SigmaHQ</button>
+        <button class="fbtn" data-filter="wazuh" type="button">Wazuh</button>
+        <button class="fbtn" data-filter="opentelemetry" type="button">OpenTelemetry</button>
         <button class="fbtn" data-filter="fork" type="button">Forks</button>
         <button class="fbtn" data-filter="review" type="button">Review required</button>
       </div>
     </div>
 
     <section class="pr-grid" id="prGrid" aria-label="Pull request grid">
-      <!-- OpenTelemetry -->
+      <!-- OpenTelemetry (TELEMETRY) -->
       <article class="pr" data-eco="opentelemetry" data-review="true" data-fork="false"
-        data-tags="opentelemetry semantic-conventions genai tool_call_response schema">
+        data-tags="opentelemetry semantic-conventions genai tool_call_response schema telemetry">
         <div class="top">
           <div class="repo">
             <span class="badge info">OpenTelemetry</span>
+            <span class="badge">TELEMETRY</span>
             <span class="badge warn">Review required</span>
             <span class="badge">Upstream</span>
           </div>
@@ -593,10 +603,11 @@
       </article>
 
       <article class="pr" data-eco="opentelemetry" data-review="true" data-fork="false"
-        data-tags="opentelemetry collector contrib redactionprocessor allowlist blocklist precedence">
+        data-tags="opentelemetry collector contrib redactionprocessor allowlist blocklist precedence telemetry">
         <div class="top">
           <div class="repo">
             <span class="badge info">OpenTelemetry</span>
+            <span class="badge">TELEMETRY</span>
             <span class="badge warn">Review required</span>
             <span class="badge">Upstream</span>
           </div>
@@ -617,12 +628,13 @@
         </div>
       </article>
 
-      <!-- Fork PR -->
+      <!-- Fork PR (TELEMETRY / Draft) -->
       <article class="pr" data-eco="opentelemetry" data-review="false" data-fork="true"
-        data-tags="gen-ai semantic-conventions security abuse requester attributes">
+        data-tags="gen-ai semantic-conventions security abuse requester attributes telemetry draft">
         <div class="top">
           <div class="repo">
             <span class="badge info">OpenTelemetry</span>
+            <span class="badge">TELEMETRY</span>
             <span class="badge good">Fork PR</span>
             <span class="badge">Draft work</span>
           </div>
@@ -643,12 +655,13 @@
         </div>
       </article>
 
-      <!-- Wazuh -->
+      <!-- Wazuh (FIELD) -->
       <article class="pr" data-eco="wazuh" data-review="true" data-fork="false"
-        data-tags="wazuh ruleset windows defender duplicate errorcode">
+        data-tags="wazuh ruleset windows defender duplicate errorcode field">
         <div class="top">
           <div class="repo">
             <span class="badge info">Wazuh</span>
+            <span class="badge">FIELD</span>
             <span class="badge warn">Review required</span>
             <span class="badge">Upstream</span>
           </div>
@@ -670,10 +683,11 @@
       </article>
 
       <article class="pr" data-eco="wazuh" data-review="false" data-fork="true"
-        data-tags="wazuh ruleset windows defender duplicate errorcode">
+        data-tags="wazuh ruleset windows defender duplicate errorcode field mirror">
         <div class="top">
           <div class="repo">
             <span class="badge info">Wazuh</span>
+            <span class="badge">FIELD</span>
             <span class="badge good">Fork PR</span>
             <span class="badge">Mirror</span>
           </div>
@@ -695,10 +709,11 @@
       </article>
 
       <article class="pr" data-eco="wazuh" data-review="true" data-fork="false"
-        data-tags="wazuh sysmon triage context rule descriptions">
+        data-tags="wazuh sysmon triage context rule descriptions field">
         <div class="top">
           <div class="repo">
             <span class="badge info">Wazuh</span>
+            <span class="badge">FIELD</span>
             <span class="badge warn">Review required</span>
             <span class="badge">Upstream</span>
           </div>
@@ -720,10 +735,11 @@
       </article>
 
       <article class="pr" data-eco="wazuh" data-review="false" data-fork="true"
-        data-tags="wazuh sysmon triage context rule descriptions">
+        data-tags="wazuh sysmon triage context rule descriptions field mirror">
         <div class="top">
           <div class="repo">
             <span class="badge info">Wazuh</span>
+            <span class="badge">FIELD</span>
             <span class="badge good">Fork PR</span>
             <span class="badge">Mirror</span>
           </div>
@@ -745,10 +761,11 @@
       </article>
 
       <article class="pr" data-eco="wazuh" data-review="true" data-fork="false"
-        data-tags="wazuh sysmon decoder eventid1 processcreate regex normalize">
+        data-tags="wazuh sysmon decoder eventid1 processcreate regex normalize field telemetry correctness">
         <div class="top">
           <div class="repo">
             <span class="badge info">Wazuh</span>
+            <span class="badge">FIELD</span>
             <span class="badge warn">Review required</span>
             <span class="badge">Upstream</span>
           </div>
@@ -769,12 +786,13 @@
         </div>
       </article>
 
-      <!-- Detection-rules fork -->
-      <article class="pr" data-eco="wazuh" data-review="false" data-fork="true"
-        data-tags="elastic detection-rules docs winrar 7zip encrypted archive guidance">
+      <!-- Elastic (CORE) -->
+      <article class="pr" data-eco="elastic" data-review="false" data-fork="true"
+        data-tags="elastic detection-rules docs winrar 7zip encrypted archive guidance core">
         <div class="top">
           <div class="repo">
-            <span class="badge">Docs</span>
+            <span class="badge info">Elastic</span>
+            <span class="badge good">CORE</span>
             <span class="badge good">Fork PR</span>
             <span class="badge">Guidance</span>
           </div>
@@ -795,12 +813,13 @@
         </div>
       </article>
 
-      <!-- SigmaHQ -->
+      <!-- SigmaHQ (LAB) -->
       <article class="pr" data-eco="sigma" data-review="true" data-fork="false"
-        data-tags="sigma windows sysmon rule description false positives guidance configuration change">
+        data-tags="sigma windows sysmon rule description false positives guidance configuration change lab">
         <div class="top">
           <div class="repo">
             <span class="badge info">SigmaHQ</span>
+            <span class="badge">LAB</span>
             <span class="badge warn">Review required</span>
             <span class="badge">Upstream</span>
           </div>
@@ -840,7 +859,7 @@
           </p>
           <div class="chips">
             <span class="chip">Detection Engineering</span>
-            <span class="chip">SOC Enablement</span>
+            <span class="chip">Elastic Security</span>
             <span class="chip">Telemetry / Normalization</span>
             <span class="chip">Rule Quality</span>
           </div>
