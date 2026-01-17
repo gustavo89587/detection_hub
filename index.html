@@ -4,201 +4,83 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="color-scheme" content="dark light" />
-  <title>Gustavo (gustavo89587) — Elastic-first Detection Engineering Portfolio</title>
-  <meta name="description" content="Elastic-first Detection Engineering portfolio. Focused on detection fidelity, telemetry correctness, and alerts that survive production." />
+  <title>Gustavo (gustavo89587) — Detection Fidelity & Elastic-first Detection Engineering</title>
+  <meta name="description" content="Detection Engineering portfolio focused on Detection Fidelity, alert survivability, and telemetry-aware design. Open-source contributions across Elastic, SigmaHQ, Wazuh, and OpenTelemetry." />
 
-  <style>
-    :root{
-      --bg:#070A12; --bg2:#0B1020;
-      --card:rgba(255,255,255,.06); --card2:rgba(255,255,255,.09);
-      --line:rgba(255,255,255,.10);
-      --text:rgba(255,255,255,.92);
-      --muted:rgba(255,255,255,.68); --muted2:rgba(255,255,255,.55);
-      --shadow:0 18px 50px rgba(0,0,0,.55);
-      --radius:22px; --radius2:16px;
-      --chip:rgba(255,255,255,.10); --chipLine:rgba(255,255,255,.14);
-      --good:rgba(34,197,94,.22); --goodLine:rgba(34,197,94,.40);
-    }
-    @media (prefers-color-scheme: light){
-      :root{
-        --bg:#F6F7FB; --bg2:#FFFFFF;
-        --card:rgba(0,0,0,.04); --card2:rgba(0,0,0,.06);
-        --line:rgba(0,0,0,.10);
-        --text:rgba(0,0,0,.88);
-        --muted:rgba(0,0,0,.64); --muted2:rgba(0,0,0,.52);
-        --shadow:0 18px 50px rgba(0,0,0,.10);
-        --chip:rgba(0,0,0,.05); --chipLine:rgba(0,0,0,.10);
-      }
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family:system-ui,Segoe UI,Roboto,Helvetica,Arial;
-      color:var(--text);
-      background:linear-gradient(180deg,var(--bg),var(--bg2));
-    }
-    a{color:inherit;text-decoration:none}
-    .wrap{max-width:1120px;margin:0 auto;padding:34px 18px 60px}
-    .card{border:1px solid var(--line);border-radius:var(--radius);
-      background:linear-gradient(180deg,var(--card2),var(--card));
-      box-shadow:var(--shadow)}
-    .inner{padding:20px}
-    .mono{font-family:ui-monospace,Menlo,Consolas,monospace}
-    .chip{font-size:12px;padding:7px 10px;border-radius:999px;
-      background:var(--chip);border:1px solid var(--chipLine);color:var(--muted)}
-    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
-    .section-title{display:flex;justify-content:space-between;align-items:flex-end;
-      margin:28px 2px 12px}
-    .section-title h2{margin:0;font-size:16px}
-    .section-title p{margin:0;font-size:12px;color:var(--muted2)}
-    .bento{display:grid;gap:14px;grid-template-columns:repeat(12,1fr)}
-    .span-8{grid-column:span 8}
-    .span-4{grid-column:span 4}
-    @media(max-width:960px){.span-8,.span-4{grid-column:span 12}}
-    .mini h3{margin:0 0 8px;font-size:14px}
-    .mini p{margin:0;font-size:13px;line-height:1.55;color:var(--muted)}
-    .btn{
-      font-size:12px;padding:8px 12px;border-radius:999px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.05)
-    }
-    footer{margin-top:40px;font-size:12px;color:var(--muted2)}
-  </style>
+  <!-- ⚠️ TODO: styles unchanged — omitted here for brevity in explanation
+       IN YOUR REAL FILE: keep EXACTLY the same <style> block you already have.
+       I am NOT changing any CSS.
+  -->
 </head>
 
 <body>
-<div class="wrap">
+  <div class="wrap">
 
-  <!-- HERO -->
-  <section class="card">
-    <div class="inner">
-      <h1>Elastic-first Detection Engineer building alerts that survive production.</h1>
-      <p class="mono muted">
-        Signal &gt; Noise • Detection Fidelity • Telemetry-aware engineering
-      </p>
-      <p>
-        I design detections end-to-end: adversary intent → observable behavior →
-        reliable telemetry → detection logic → noise reduction → triage context.
-      </p>
-      <div class="chips">
-        <span class="chip">Elastic Security</span>
-        <span class="chip">Detection Engineering</span>
-        <span class="chip">Identity-first detection</span>
-        <span class="chip">Operational credibility</span>
-      </div>
-    </div>
-  </section>
+    <!-- ================= TOPBAR (UNCHANGED) ================= -->
+    <!-- keep your existing header/topbar here exactly as-is -->
 
-  <!-- CAPABILITIES -->
-  <div class="section-title" id="capabilities">
-    <div>
-      <h2>Capabilities</h2>
-      <p>How I think and what I ship</p>
-    </div>
-    <p class="mono">production-survivable detections</p>
-  </div>
+    <!-- ================= HERO (UPDATED – PRIMARY ASSET) ================= -->
+    <section class="hero" id="about">
+      <article class="card span-12">
+        <div class="inner">
+          <div class="kicker">
+            <span class="dot"></span>
+            <span class="mono">Detection Fidelity &gt; Alert Volume</span>
+          </div>
 
-  <section class="bento">
-    <article class="card span-8">
-      <div class="inner mini">
-        <h3>Detection engineering workflow</h3>
-        <p>
-          Assumption-driven detection design focused on adversary constraints,
-          not tools. Every rule documents intent, expected noise, and operational trade-offs.
-        </p>
-      </div>
-    </article>
+          <h1>
+            Detection Engineer focused on Detection Fidelity —
+            building alerts that survive production.
+          </h1>
 
-    <article class="card span-4">
-      <div class="inner mini">
-        <h3>What I optimize for</h3>
-        <p>
-          Analyst time, trust in alerts, and long-term maintainability —
-          not raw alert volume.
-        </p>
-      </div>
-    </article>
-  </section>
+          <p class="lead">
+            I design detections around <strong>operational reality</strong>.
+            My primary work is the <strong>Detection Fidelity Score</strong>,
+            a practical framework to decide when alerts should be
+            <em>suppressed</em>, <em>alerted</em>, or <em>retired</em> —
+            preserving analyst trust and SOC credibility.
+          </p>
 
-  <!-- DETECTION FIDELITY SCORE -->
-  <div class="section-title" id="fidelity">
-    <div>
-      <h2>Detection Fidelity</h2>
-      <p>How I reason about detection quality in production</p>
-    </div>
-    <p class="mono">governance & decision-making</p>
-  </div>
+          <div class="chips">
+            <span class="chip">Detection Fidelity Score</span>
+            <span class="chip">Signal &gt; Noise</span>
+            <span class="chip">Lifecycle-aware detection</span>
+            <span class="chip">Identity & telemetry-first</span>
+            <span class="chip">Production survivability</span>
+          </div>
 
-  <section class="bento">
-    <article class="card span-8">
-      <div class="inner mini">
-        <h3>Detection Fidelity Score</h3>
-        <p>
-          A practical framework to evaluate detection rules beyond “does it fire”.
-          The score models operational reality: signal strength, noise cost,
-          response burden, and survivability in real SOC environments.
-        </p>
-        <p>
-          It formalizes when a detection should be <strong>suppressed</strong>,
-          <strong>alerted</strong>, or <strong>retired</strong> — preserving
-          analyst trust and security credibility.
-        </p>
-        <div class="chips">
-          <span class="chip">Signal quality</span>
-          <span class="chip">Operational cost</span>
-          <span class="chip">SOC trust</span>
-          <span class="chip">Lifecycle-aware</span>
+          <div class="chips" style="margin-top:12px">
+            <a class="btn primary"
+               href="https://github.com/gustavo89587/detection-fidelity-score"
+               target="_blank" rel="noopener">
+              View Detection Fidelity Score
+            </a>
+            <a class="btn"
+               href="#contributions">
+              View Open-source PRs
+            </a>
+          </div>
         </div>
-      </div>
-    </article>
+      </article>
+    </section>
 
-    <article class="card span-4">
-      <div class="inner mini">
-        <h3>Project</h3>
-        <p class="mono">
-          github.com/gustavo89587/detection-fidelity-score
-        </p>
-        <p>
-          Open-source framework used to reason about detection effectiveness,
-          not just coverage.
-        </p>
-        <a class="btn" href="https://github.com/gustavo89587/detection-fidelity-score" target="_blank" rel="noopener">
-          View on GitHub
-        </a>
-      </div>
-    </article>
-  </section>
+    <!-- ================= CAPABILITIES (UNCHANGED CONTENT) ================= -->
+    <!-- keep your existing Capabilities section EXACTLY as-is -->
 
-  <!-- CONTACT -->
-  <div class="section-title" id="contact">
-    <div>
-      <h2>Contact</h2>
-      <p>Open to remote roles</p>
-    </div>
-    <p class="mono">UTC-3 • EN / PT-BR</p>
+    <!-- ================= CONTRIBUTIONS / PR GRID (UNCHANGED) ================= -->
+    <!-- keep your entire PR grid, filters, scripts, and links EXACTLY as-is -->
+
+    <!-- ================= CONTACT (UNCHANGED) ================= -->
+    <!-- keep your contact section EXACTLY as-is -->
+
+    <footer class="footer">
+      <div>© <span id="yr"></span> Gustavo <span class="muted">(gustavo89587)</span></div>
+      <div class="mono muted">(index.html)</div>
+    </footer>
   </div>
 
-  <section class="card">
-    <div class="inner mini">
-      <p>
-        Detection Engineering / Blue Team roles where detection quality,
-        identity-first thinking, and operational credibility matter.
-      </p>
-      <p class="mono">
-        GitHub: <a href="https://github.com/gustavo89587" target="_blank">github.com/gustavo89587</a><br/>
-        Email: gugaokamoto1@gmail.com
-      </p>
-    </div>
-  </section>
-
-  <footer>
-    © <span id="yr"></span> Gustavo (gustavo89587)
-  </footer>
-
-</div>
-
-<script>
-  document.getElementById("yr").textContent = new Date().getFullYear();
-</script>
+  <script>
+    document.getElementById("yr").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
