@@ -690,6 +690,52 @@
           </p>
         </div>
       </article>
+      <article class="card span-12">
+  <div class="inner mini">
+    <h3>Example: Detection Fidelity applied in practice</h3>
+
+    <p class="text">
+      <strong>Detection:</strong> Human lateral authentication to server (first-seen / out-of-pattern).<br/>
+      <strong>Hypothesis:</strong> valid user credentials being abused for lateral movement into server-class assets.<br/>
+      <strong>Telemetry:</strong> Windows Security <span class="mono">4624</span> (success),
+      optional <span class="mono">4625</span> (fail), LogonType <span class="mono">3</span>/<span class="mono">10</span>,
+      destination classified as server.
+    </p>
+
+    <div class="chips" style="margin-top:10px">
+      <span class="chip">Identity-first detection</span>
+      <span class="chip">Lateral movement</span>
+      <span class="chip">Windows Security Logs</span>
+      <span class="chip">Server access</span>
+    </div>
+
+    <div class="chips" style="margin-top:12px">
+      <span class="chip">Initial state: <strong>SUPPRESSED</strong></span>
+      <span class="chip">Baseline: <strong>14–30 days</strong></span>
+      <span class="chip">Promote when: <strong>first-seen + critical server</strong></span>
+      <span class="chip">Retire if: <strong>server/workstation not distinguishable</strong></span>
+    </div>
+
+    <div class="chips" aria-label="Fidelity score" style="margin-top:12px">
+      <span class="chip">Signal strength: <strong>4 / 5</strong></span>
+      <span class="chip">Noise cost: <strong>3 / 5</strong></span>
+      <span class="chip">Response burden: <strong>3 / 5</strong></span>
+      <span class="chip">Telemetry reliability: <strong>4 / 5</strong></span>
+      <span class="chip">Maintainability: <strong>4 / 5</strong></span>
+      <span class="chip"><strong>Overall: 3.6 / 5</strong> — Promote with constraints</span>
+    </div>
+
+    <p class="text" style="margin-top:10px">
+      <strong>Operational rationale:</strong>
+      this detection starts suppressed to build identity and host baselines.
+      It is promoted to an alert only when it becomes actionable
+      (first-seen access to critical servers).
+      If the environment cannot reliably separate servers from workstations,
+      the detection is retired to preserve SOC trust and avoid structural noise.
+    </p>
+  </div>
+</article>
+
     </section>
 
     <div class="section-title" id="contributions">
