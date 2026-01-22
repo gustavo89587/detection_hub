@@ -530,10 +530,12 @@
       <aside class="card">
         <div class="inner mini">
           <h3>Now</h3>
-          <p class="text">
-            Shipping upstream improvements across Elastic, SigmaHQ, Wazuh, and OpenTelemetry — with an obsession for
-            <strong>fidelity</strong>: explainable alerts, low noise, and strong triage context.
-          </p>
+           <p class="text">
+              Landing upstream improvements across OpenTelemetry and Elastic,
+              plus submitting detection and ruleset enhancements to Wazuh and SigmaHQ —
+              with a strong focus on detection fidelity, tuning, and production survivability.
+           </p>
+
 
           <div class="statgrid" aria-label="Highlights">
             <div class="stat">
@@ -745,6 +747,22 @@
       </div>
       <p class="mono"><span id="countShown">0</span>/<span id="countTotal">0</span> shown</p>
     </div>
+    <section class="bento" aria-label="PR highlights" style="margin-top:14px">
+  <article class="card span-12">
+    <div class="inner mini">
+      <h3>Highlights (fast proof)</h3>
+      <p class="text">
+        A quick snapshot so reviewers don’t have to click every link.
+      </p>
+      <div class="chips" style="margin-top:10px">
+        <span class="chip">✅ Merged: OpenTelemetry Collector Contrib — redactionprocessor precedence (#45390)</span>
+        <span class="chip">✅ Merged: Elastic detection-rules — encrypted archive tuning guidance (#5547)</span>
+        <span class="chip">🟡 In review: Wazuh ruleset PRs (#908 / #909 / #910)</span>
+        <span class="chip">🧪 Staging (fork): semantic-conventions experiments, Elastic rule prototyping</span>
+      </div>
+
+  </article>
+</section>
 
     <div class="toolbar" aria-label="PR toolbar">
       <div class="search" role="search">
@@ -765,7 +783,7 @@
         <button class="fbtn" data-filter="wazuh" type="button">Wazuh</button>
         <button class="fbtn" data-filter="opentelemetry" type="button">OpenTelemetry</button>
         <button class="fbtn" data-filter="fork" type="button">Forks</button>
-        <button class="fbtn" data-filter="review" type="button">Review required</button>
+        <button class="fbtn" data-filter="review" type="button">Needs review</button>
       </div>
     </div>
 
@@ -792,16 +810,17 @@
 
         <div class="meta">
           <span class="mono">open-telemetry/semantic-conventions</span>
-          <span>Opened 17 hours ago</span>
+          <span>Status: OPEN</span>
           <span class="mono">by gustavo89587</span>
-        </div>
+       </div>
+
 
         <p class="desc">
           Tightens semantic meaning in message part roles to reduce ambiguity and improve downstream parsing and validation.
         </p>
 
         <div class="linkrow">
-          <a class="prlink" href="https://github.com/open-telemetry/semantic-conventions/pull/3281" target="_blank" rel="noopener">Open PR</a>
+          <a class="prlink" href="https://github.com/open-telemetry/semantic-conventions/pull/3281" target="_blank" rel="noopener">>View PR</a>
           <span class="muted mono">tasks: 3</span>
         </div>
       </article>
@@ -827,7 +846,7 @@
 
         <div class="meta">
           <span class="mono">open-telemetry/opentelemetry-collector-contrib</span>
-          <span>Opened yesterday</span>
+          <span>Status: MERGED</span>
           <span class="mono">by gustavo89587</span>
         </div>
 
@@ -836,7 +855,7 @@
         </p>
 
         <div class="linkrow">
-          <a class="prlink" href="https://github.com/open-telemetry/opentelemetry-collector-contrib/pull/45390" target="_blank" rel="noopener">Open PR</a>
+          <a class="prlink" href="https://github.com/open-telemetry/opentelemetry-collector-contrib/pull/45390" target="_blank" rel="noopener">>View PR</a>
           <span class="muted mono">@bogdandrutu</span>
         </div>
       </article>
@@ -853,8 +872,9 @@
           <div class="repo">
             <span class="badge info">OpenTelemetry</span>
             <span class="badge">TELEMETRY</span>
-            <span class="badge good">Fork PR</span>
-            <span class="badge">Draft work</span>
+            <span class="badge good">MERGED</span>
+            <span class="badge">Upstream (official)</span>
+
           </div>
           <span class="badge">#1</span>
         </div>
@@ -872,7 +892,7 @@
         </p>
 
         <div class="linkrow">
-          <a class="prlink" href="https://github.com/gustavo89587/semantic-conventions/pull/1" target="_blank" rel="noopener">Open PR</a>
+          <a class="prlink" href="https://github.com/gustavo89587/semantic-conventions/pull/1" target="_blank" rel="noopener">>View PR</a>
           <span class="muted mono">fork</span>
         </div>
       </article>
@@ -908,7 +928,7 @@
         </p>
 
         <div class="linkrow">
-          <a class="prlink" href="https://github.com/wazuh/wazuh-ruleset/pull/910" target="_blank" rel="noopener">Open PR</a>
+          <a class="prlink" href="https://github.com/wazuh/wazuh-ruleset/pull/910" target="_blank" rel="noopener">>View PR</a>
           <span class="muted mono">upstream</span>
         </div>
       </article>
@@ -924,7 +944,7 @@
           <div class="repo">
             <span class="badge info">Wazuh</span>
             <span class="badge">FIELD</span>
-            <span class="badge good">Fork PR</span>
+            <span class="badge good">Fork (staging)</span>
             <span class="badge">Mirror</span>
           </div>
           <span class="badge">#2</span>
@@ -941,7 +961,7 @@
         <p class="desc">Fork mirror used to stage and validate changes before upstream submission.</p>
 
         <div class="linkrow">
-          <a class="prlink" href="https://github.com/gustavo89587/wazuh-ruleset/pull/2" target="_blank" rel="noopener">Open PR</a>
+          <a class="prlink" href="https://github.com/gustavo89587/wazuh-ruleset/pull/2" target="_blank" rel="noopener">>View PR</a>
           <span class="muted mono">fork</span>
         </div>
       </article>
@@ -976,7 +996,7 @@
         </p>
 
         <div class="linkrow">
-          <a class="prlink" href="https://github.com/wazuh/wazuh-ruleset/pull/909" target="_blank" rel="noopener">Open PR</a>
+          <a class="prlink" href="https://github.com/wazuh/wazuh-ruleset/pull/909" target="_blank" rel="noopener">>View PR</a>
           <span class="muted mono">sysmon</span>
         </div>
       </article>
@@ -992,7 +1012,7 @@
           <div class="repo">
             <span class="badge info">Wazuh</span>
             <span class="badge">FIELD</span>
-            <span class="badge good">Fork PR</span>
+            <span class="badge good">Fork (staging)</span>
             <span class="badge">Mirror</span>
           </div>
           <span class="badge">#1</span>
@@ -1009,7 +1029,7 @@
         <p class="desc">Fork mirror used for iteration and validation before upstream review.</p>
 
         <div class="linkrow">
-          <a class="prlink" href="https://github.com/gustavo89587/wazuh-ruleset/pull/1" target="_blank" rel="noopener">Open PR</a>
+          <a class="prlink" href="https://github.com/gustavo89587/wazuh-ruleset/pull/1" target="_blank" rel="noopener">>View PR</a>
           <span class="muted mono">fork</span>
         </div>
       </article>
@@ -1044,7 +1064,7 @@
         </p>
 
         <div class="linkrow">
-          <a class="prlink" href="https://github.com/wazuh/wazuh-ruleset/pull/908" target="_blank" rel="noopener">Open PR</a>
+          <a class="prlink" href="https://github.com/wazuh/wazuh-ruleset/pull/908" target="_blank" rel="noopener">>View PR</a>
           <span class="muted mono">decoder</span>
         </div>
       </article>
@@ -1061,8 +1081,9 @@
           <div class="repo">
             <span class="badge info">Elastic</span>
             <span class="badge good">CORE</span>
-            <span class="badge good">Fork PR</span>
-            <span class="badge">Guidance</span>
+            <span class="badge good">MERGED</span>
+            <span class="badge">Upstream (official)</span>
+
           </div>
           <span class="badge">#1</span>
         </div>
@@ -1070,17 +1091,18 @@
         <h4>Docs: improve WinRAR/7-Zip encrypted archive rule guidance</h4>
 
         <div class="meta">
-          <span class="mono">gustavo89587/detection-rules</span>
-          <span>Opened 3 days ago</span>
+          <span class="mono">elastic/detection-rules</span>
+          <span>Status: MERGED</span>
           <span class="mono">by gustavo89587</span>
         </div>
+
 
         <p class="desc">
           Strengthens guidance for encrypted archive detections with triage context and false-positive considerations.
         </p>
 
         <div class="linkrow">
-          <a class="prlink" href="https://github.com/gustavo89587/detection-rules/pull/1" target="_blank" rel="noopener">Open PR</a>
+          <a class="prlink" href="https://github.com/gustavo89587/detection-rules/pull/1" target="_blank" rel="noopener">>View PR</a>
           <span class="muted mono">docs</span>
         </div>
       </article>
@@ -1116,7 +1138,7 @@
         </p>
 
         <div class="linkrow">
-          <a class="prlink" href="https://github.com/SigmaHQ/sigma/pull/5835" target="_blank" rel="noopener">Open PR</a>
+          <a class="prlink" href="https://github.com/SigmaHQ/sigma/pull/5835" target="_blank" rel="noopener">>View PR</a>
           <span class="muted mono">windows</span>
         </div>
       </article>
